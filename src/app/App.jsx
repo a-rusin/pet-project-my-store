@@ -1,3 +1,7 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { loadProductsList } from "./store/products";
+
 import { Redirect, Route, Switch } from "react-router-dom";
 
 import Product from "./layout/product";
@@ -14,6 +18,12 @@ import About from "./layout/about";
 import NotFound from "./layout/notFound";
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadProductsList());
+  }, []);
+
   return (
     <div className="page-result">
       <div className="main-wrapper">
