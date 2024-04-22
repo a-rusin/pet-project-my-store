@@ -1,11 +1,15 @@
+import { useSelector } from "react-redux";
 import CategoriesList from "../ui/categoriesList";
 import Filters from "../ui/filters";
 import ProductsList from "../ui/products/productsList";
 import Slider from "../ui/slider";
 import { useParams } from "react-router-dom";
+import { getProductsLoadingStatus } from "../../store/products";
 
 const ProductsPage = () => {
   const { productsCategory } = useParams();
+
+  const isProductsLoading = useSelector(getProductsLoadingStatus());
 
   return (
     <>
@@ -16,7 +20,8 @@ const ProductsPage = () => {
           <CategoriesList />
         </div>
         <div className="right-part">
-          <Filters />
+          {!isProductsLoading && <Filters />}
+
           <ProductsList />
         </div>
       </div>

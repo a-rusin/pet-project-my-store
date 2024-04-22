@@ -1,5 +1,6 @@
 import Menu from "./menu";
 import CtrlPanel from "./ctrlPanel";
+import Basket from "../basket";
 
 const Navbar = () => {
   return (
@@ -7,6 +8,7 @@ const Navbar = () => {
       <div className="header-wrapper">
         <Menu />
         <CtrlPanel />
+        <Basket />
       </div>
     </header>
   );

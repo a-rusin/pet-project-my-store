@@ -1,21 +1,23 @@
-const Product = () => {
+const Product = ({ product }) => {
+  const { name: productName, description, category, rage, reviews, price, stokes, bonus, availability, image } = product;
+
   return (
     <li className="products-item">
       <div className="product-info-wrapper">
-        <img src="https://s3.e2e4.ru/imgproxy/3259482" className="product-img" />
+        <img src={image} className="product-img" />
         <div className="product-main-info">
-          <h2 className="product-name">Корпус BaseTech eXtreme GFX-03, Midi-Tower, без БП, черный</h2>
-          <p className="product-info-text">Корпус BaseTech eXtreme GFX-03, ATX, Midi-Tower, USB 3.0, RGB подсветка, черный, без БП (BT-GFX-03-MESH-4F-RGB)</p>
-          <p className="product-info-text">Категория: комплектующие</p>
-          <p className="product-info-text">Рейтинг: 5</p>
-          <p className="product-info-text">Отзывы: 23</p>
+          <h2 className="product-name">{productName}</h2>
+          <p className="product-info-text">{description}</p>
+          <p className="product-info-text">Категория: {category}</p>
+          <p className="product-info-text">Рейтинг: {rage}</p>
+          <p className="product-info-text">Отзывы: {reviews}</p>
           <p className="product-info-text">Артикул: 1234567890</p>
         </div>
         <div className="product-action-block">
           <div className="product-price-group">
-            <p className="product-price">5 600 ₽</p>
-            <p className="product-bonus">+5 бонусов</p>
-            <p className="product-availability">В налачии</p>
+            <p className="product-price">{price} ₽</p>
+            <p className="product-bonus">+{bonus} бонусов</p>
+            <p className="product-availability">{availability}</p>
           </div>
           <div className="product-btns-group">
             <button className="product-btn product-btn-buy">Купить</button>

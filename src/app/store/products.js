@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import productsService from "../services/products.service";
 
 const productsSlice = createSlice({
   name: "products",
@@ -11,7 +12,7 @@ const productsSlice = createSlice({
     productsRequested: (state) => {
       state.isLoading = true;
     },
-    productsReceved: (state, action) => {
+    productsRecived: (state, action) => {
       state.entities = action.payload;
       state.isLoading = false;
     },
@@ -23,12 +24,21 @@ const productsSlice = createSlice({
 });
 
 const { reducer: productsReducer } = productsSlice;
-const { productsRequested, productsReceved, productsRequstFailed } = productsSlice.actions;
+const { productsRequested, productsRecived, productsRequstFailed } = productsSlice.actions;
 
-export const loadProductsList = () => (dispatch) => {
+export const loadProductsList = () => async (dispatch) => {
   dispatch(productsRequested());
+
+  try {
+    const data = await productsService.getAll();
+
+    setTimeout(() => {
+      dispatch(productsRecived(data));
+    }, 4000);
+  } catch (error) {}
 };
 
-const getProducts = () => (state) => state.products.entities;
+export const getProductsList = () => (state) => state.products.entities;
+export const getProductsLoadingStatus = () => (state) => state.products.isLoading;
 
 export default productsReducer;

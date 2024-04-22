@@ -1,22 +1,33 @@
+import { useEffect } from "react";
 import Product from "./product";
-
-const products = [
-  { id: 0, name: "Корпус BaseTech eXtreme GFX-03, Midi-Tower, без БП, черный" },
-  { id: 1, name: "Корпус BaseTech eXtreme GFX-03, Midi-Tower, без БП, черный" },
-  { id: 2, name: "Корпус BaseTech eXtreme GFX-03, Midi-Tower, без БП, черный" },
-  { id: 3, name: "Корпус BaseTech eXtreme GFX-03, Midi-Tower, без БП, черный" },
-  { id: 4, name: "Корпус BaseTech eXtreme GFX-03, Midi-Tower, без БП, черный" },
-];
+import { useDispatch, useSelector } from "react-redux";
+import { getProductsList, getProductsLoadingStatus, loadProductsList } from "../../../store/products";
+import Loader from "../../common/loader";
 
 const ProductsList = () => {
+  const products = useSelector(getProductsList());
+  const isProductsLoading = useSelector(getProductsLoadingStatus());
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadProductsList());
+  }, []);
+
   return (
     <div className="products-wrapper">
       <h2 className="products-list-title">Все товары</h2>
-      <ul className="products-list">
-        {products.map((product) => (
-          <Product key={product.id} />
-        ))}
-      </ul>
+      {isProductsLoading ? (
+        <li className="products-item products-item-loader">
+          <Loader />
+        </li>
+      ) : (
+        <ul className="products-list">
+          {products.map((product) => (
+            <Product key={product._id} product={product} />
+          ))}
+        </ul>
+      )}
     </div>
   );
 };
