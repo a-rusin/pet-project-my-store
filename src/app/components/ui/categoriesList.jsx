@@ -1,28 +1,22 @@
-const categories = [
-  { id: 0, name: "Бытовая техника" },
-  { id: 1, name: "Красота и здоровье" },
-  { id: 2, name: "Смартфоны" },
-  { id: 3, name: "Гаджеты" },
-  { id: 4, name: "ТВ, консоли" },
-  { id: 5, name: "Аудио" },
-  { id: 6, name: "Офис и мебель" },
-  { id: 7, name: "Ноутбуки" },
-  { id: 8, name: "Комплектующие для ПК" },
-  { id: 9, name: "Сетевое оборудование" },
-  { id: 10, name: "Инструмент и стройка" },
-  { id: 11, name: "Садовая техника" },
-  { id: 12, name: "Автотовары" },
-  { id: 13, name: "Аксесуары" },
-  { id: 14, name: "Отдых и развлечения" },
-];
+import { useEffect } from "react";
+import categoriesService from "../../services/categories.service";
+import { useSelector, useDispatch } from "react-redux";
+import { getCategoriesList, loadCategoriesList } from "./../../store/categories";
 
 const CategoriesList = () => {
+  const dispatch = useDispatch();
+  const categories = useSelector(getCategoriesList());
+
+  useEffect(() => {
+    dispatch(loadCategoriesList());
+  }, []);
+
   return (
     <div className="category-wrapper">
       <h2 className="category-list-title">Каталог товаров</h2>
       <ul className="category-list">
         {categories.map((category) => (
-          <li className="category-item" key={category.id}>
+          <li className="category-item" key={category._id}>
             {category.name}
           </li>
         ))}
