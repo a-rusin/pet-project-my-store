@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { Redirect, Route, Switch } from "react-router-dom";
 
@@ -14,13 +14,18 @@ import Contacts from "./layout/contacts";
 import Feedback from "./layout/feedback";
 import About from "./layout/about";
 import NotFound from "./layout/notFound";
-import { getBasketStatus } from "./store/basket";
+import { loadProductsList } from "./store/products";
+import { useEffect } from "react";
 
 const App = () => {
-  const isBasketOpen = useSelector(getBasketStatus());
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(loadProductsList());
+  }, []);
 
   return (
-    <div className={isBasketOpen ? "page-result blocked" : "page-result"}>
+    <div className="page-result">
       <div className="main-wrapper">
         <Navbar />
         <main className="page">

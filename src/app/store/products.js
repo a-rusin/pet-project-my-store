@@ -34,7 +34,7 @@ export const loadProductsList = () => async (dispatch) => {
 
     setTimeout(() => {
       dispatch(productsRecived(data));
-    }, 4000);
+    }, 2000);
   } catch (error) {}
 };
 

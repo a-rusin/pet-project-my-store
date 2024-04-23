@@ -8,12 +8,6 @@ const ProductsList = () => {
   const products = useSelector(getProductsList());
   const isProductsLoading = useSelector(getProductsLoadingStatus());
 
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(loadProductsList());
-  }, []);
-
   return (
     <div className="products-wrapper">
       <h2 className="products-list-title">Все товары</h2>

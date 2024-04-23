@@ -1,6 +1,6 @@
 import Menu from "./menu";
 import CtrlPanel from "./ctrlPanel";
-import Basket from "../basket";
+import Basket from "../basket/basket";
 
 const Navbar = () => {
   return (

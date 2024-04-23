@@ -33,7 +33,7 @@ export const loadCategoriesList = () => async (dispatch) => {
     const data = await categoriesService.getAll();
     setTimeout(() => {
       dispatch(categoriesRecived(data));
-    }, 3000);
+    }, 1000);
   } catch (error) {}
 };
 

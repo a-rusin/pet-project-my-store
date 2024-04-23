@@ -1,5 +1,18 @@
+import { useDispatch, useSelector } from "react-redux";
+import { addProductToBasket, getBasketEntities } from "../../../store/basket";
+
 const Product = ({ product }) => {
-  const { name: productName, description, category, rage, reviews, price, stokes, bonus, availability, image } = product;
+  const { _id: productId, name: productName, description, category, rage, reviews, price, stokes, bonus, availability, image } = product;
+
+  const dispatch = useDispatch();
+
+  const handleClickProductToBasket = (productId) => {
+    dispatch(addProductToBasket(productId));
+  };
+
+  const basketEntities = useSelector(getBasketEntities());
+
+  const isProductInBasket = basketEntities.find((product) => product._id === productId);
 
   return (
     <li className="products-item">
@@ -20,7 +33,13 @@ const Product = ({ product }) => {
             <p className="product-availability">{availability}</p>
           </div>
           <div className="product-btns-group">
-            <button className="product-btn product-btn-buy">Купить</button>
+            <button
+              className={isProductInBasket ? "product-btn product-btn-buy active" : "product-btn product-btn-buy"}
+              onClick={() => handleClickProductToBasket(productId)}
+              disabled={isProductInBasket}
+            >
+              {isProductInBasket ? "Уже в корзине" : "В корзину"}
+            </button>
             <button className="product-btn product-btn-fav">
               <svg
                 width="800px"

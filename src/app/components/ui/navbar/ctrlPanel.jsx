@@ -1,10 +1,13 @@
-import { useDispatch } from "react-redux";
-import { openBasket } from "../../../store/basket";
+import { useDispatch, useSelector } from "react-redux";
+import { getBasketEntities, openBasket } from "../../../store/basket";
 
 const CtrlPanel = () => {
   const dispatch = useDispatch();
 
+  const basketEntities = useSelector(getBasketEntities());
+
   const handleClickOpenBasket = () => {
+    document.body.classList.add("blocked");
     dispatch(openBasket());
   };
 
@@ -22,6 +25,7 @@ const CtrlPanel = () => {
         </form>
         <button className="btn-ctrl-panel btn-ctrl-panel-fav">Избранное</button>
         <button className="btn-ctrl-panel btn-ctrl-panel-basket" onClick={handleClickOpenBasket}>
+          {basketEntities.length !== 0 && <span className="basket-product-count">{basketEntities.length}</span>}
           Корзина
         </button>
         <button className="btn-ctrl-panel btn-ctrl-panel-login">Войти</button>
