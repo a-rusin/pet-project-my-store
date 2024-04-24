@@ -35,6 +35,11 @@ button:focus {
   outline: none;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 html {
   font-size: var(--font-size-html);
 }
@@ -760,4 +765,39 @@ body {
 .basket-bottom-group {
   padding: 0 0 20rem;
   height: 12vh;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination-list {
+  display: flex;
+  border: 1rem solid #9c9c9c;
+  border-radius: 5rem;
+  margin-top: 20rem;
+  box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.16);
+  background: #fff;
+  overflow: hidden;
+}
+
+.pagination-item {
+  padding: 10rem 18rem;
+  cursor: pointer;
+  font-size: 14rem;
+}
+
+.pagination-item:hover {
+  background-color: #e0e0e0;
+}
+
+.pagination-item.active {
+  background-color: #5802a3;
+  color: #fff;
+  font-weight: 600;
+}
+
+.pagination-item:not(:last-child) {
+  border-right: 1rem solid #9c9c9c;
 }
