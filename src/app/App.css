@@ -329,41 +329,74 @@ body {
   margin-bottom: 5rem;
 }
 
-.products-filter {
+.filters {
   background-color: #fff;
   padding: 20rem 15rem;
   border-radius: 10rem;
-  margin-bottom: 40rem;
+  margin-bottom: 10rem;
   box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.16);
 }
 
-.products-filter-wrapper {
+.filters-wrapper {
   display: flex;
-  align-items: center;
-  gap: 20rem;
+  flex-direction: column;
+  gap: 10rem;
 }
 
-.products-filter-list {
+.filters-item-title {
+  font-size: 12rem;
+  color: gray;
+  flex: 0 0 120rem;
+}
+
+.filters-item {
+  display: flex;
+  gap: 10rem;
+  align-items: center;
+}
+
+.filter-sort-list {
   display: flex;
   gap: 10rem;
 }
 
-.products-filter-item {
+.filter-sort-item {
   font-size: 14rem;
-  padding: 5rem;
+  padding: 6rem 10rem;
   cursor: pointer;
-}
-
-.products-filter-item.active,
-.products-filter-item:hover {
-  background-color: #5802a3;
-  color: #fff;
+  background-color: #e0e0e0;
   border-radius: 5rem;
 }
 
-.products-filter-title {
-  font-size: 12rem;
-  color: grey;
+.filter-sort-item.active,
+.filter-sort-item:hover {
+  background-color: #5802a3;
+  color: #fff;
+}
+
+.pagination {
+  display: flex;
+  gap: 10rem;
+  align-items: center;
+}
+
+.pagination-list {
+  display: flex;
+  gap: 5rem;
+}
+
+.pagination-item {
+  padding: 7rem 14rem;
+  cursor: pointer;
+  font-size: 14rem;
+  border-radius: 5rem;
+  background-color: #e0e0e0;
+}
+
+.pagination-item.active,
+.pagination-item:hover {
+  background-color: #5802a3;
+  color: #fff;
 }
 
 .products-item {
@@ -765,39 +798,4 @@ body {
 .basket-bottom-group {
   padding: 0 0 20rem;
   height: 12vh;
-}
-
-.pagination {
-  display: flex;
-  justify-content: center;
-}
-
-.pagination-list {
-  display: flex;
-  border: 1rem solid #9c9c9c;
-  border-radius: 5rem;
-  margin-top: 20rem;
-  box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.16);
-  background: #fff;
-  overflow: hidden;
-}
-
-.pagination-item {
-  padding: 10rem 18rem;
-  cursor: pointer;
-  font-size: 14rem;
-}
-
-.pagination-item:hover {
-  background-color: #e0e0e0;
-}
-
-.pagination-item.active {
-  background-color: #5802a3;
-  color: #fff;
-  font-weight: 600;
-}
-
-.pagination-item:not(:last-child) {
-  border-right: 1rem solid #9c9c9c;
 }

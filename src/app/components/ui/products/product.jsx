@@ -30,7 +30,7 @@ const Product = ({ product }) => {
         <div className="product-action-block">
           <div className="product-price-group">
             <p className="product-price">{formatNumber(price.toString())} ₽</p>
-            <p className="product-bonus">+{bonus} бонусов</p>
+            <p className="product-bonus">+{formatNumber(bonus.toString())} бонусов</p>
             <p className="product-availability">{availability}</p>
           </div>
           <div className="product-btns-group">

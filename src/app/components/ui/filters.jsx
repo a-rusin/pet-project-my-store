@@ -1,14 +1,18 @@
-const Filters = () => {
+import Pagination from "../common/pagination";
+import FilterSortBy from "./filterSortBy";
+
+const Filters = ({ products, pageSize, handlePageChange, currentPage, handleFilterChange, currentSortFilter }) => {
   return (
-    <div className="products-filter">
-      <div className="products-filter-wrapper">
-        <p className="products-filter-title">Сортировать по:</p>
-        <ul className="products-filter-list">
-          <li className="products-filter-item active">Сначала дорогие</li>
-          <li className="products-filter-item">Сначала дешевые</li>
-          <li className="products-filter-item">По наименованию</li>
-          <li className="products-filter-item">По популярности</li>
-        </ul>
+    <div className="filters">
+      <div className="filters-wrapper">
+        <div className="filters-item">
+          <p className="filters-item-title">Сортировать по: </p>
+          <FilterSortBy handleFilterChange={handleFilterChange} currentSortFilter={currentSortFilter} />
+        </div>
+        <div className="filters-item">
+          <p className="filters-item-title">Номер страницы: </p>
+          <Pagination items={products} pageSize={pageSize} onPageChange={handlePageChange} currentPage={currentPage} />
+        </div>
       </div>
     </div>
   );
