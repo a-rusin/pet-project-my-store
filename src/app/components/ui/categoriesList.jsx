@@ -1,17 +1,10 @@
-import { useEffect } from "react";
-import categoriesService from "../../services/categories.service";
 import { useSelector, useDispatch } from "react-redux";
 import { getCategoriesList, getCategoriesLoadingStatus, loadCategoriesList } from "./../../store/categories";
 import Loader from "../common/loader";
 
 const CategoriesList = () => {
-  const dispatch = useDispatch();
   const categories = useSelector(getCategoriesList());
   const isCategoriesLoading = useSelector(getCategoriesLoadingStatus());
-
-  useEffect(() => {
-    dispatch(loadCategoriesList());
-  }, []);
 
   return (
     <div className="category-wrapper">

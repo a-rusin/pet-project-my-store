@@ -16,12 +16,15 @@ import About from "./layout/about";
 import NotFound from "./layout/notFound";
 import { loadProductsList } from "./store/products";
 import { useEffect } from "react";
+import Login from "./layout/login";
+import { loadCategoriesList } from "./store/categories";
 
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(loadProductsList());
+    dispatch(loadCategoriesList());
   }, []);
 
   return (
@@ -39,6 +42,7 @@ const App = () => {
               <Route path="/contacts" component={Contacts} />
               <Route path="/feedback" component={Feedback} />
               <Route path="/about" component={About} />
+              <Route path="/login" component={Login} />
               <Route path="/404" component={NotFound} />
               <Redirect to="/404" />
             </Switch>

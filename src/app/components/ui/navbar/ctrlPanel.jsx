@@ -1,14 +1,20 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getBasketEntities, openBasket } from "../../../store/basket";
+import { useHistory } from "react-router-dom";
 
 const CtrlPanel = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const basketEntities = useSelector(getBasketEntities());
 
   const handleClickOpenBasket = () => {
     document.body.classList.add("blocked");
     dispatch(openBasket());
+  };
+
+  const handleClickLogin = () => {
+    history.push("/login");
   };
 
   return (
@@ -28,7 +34,9 @@ const CtrlPanel = () => {
           {basketEntities.length !== 0 && <span className="basket-product-count">{basketEntities.length}</span>}
           Корзина
         </button>
-        <button className="btn-ctrl-panel btn-ctrl-panel-login">Войти</button>
+        <button className="btn-ctrl-panel btn-ctrl-panel-login" onClick={handleClickLogin}>
+          Войти
+        </button>
       </div>
     </div>
   );

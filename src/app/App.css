@@ -799,3 +799,72 @@ body {
   padding: 0 0 20rem;
   height: 12vh;
 }
+
+.form {
+  max-width: 450rem;
+  margin: 200rem auto 0;
+  background-color: #fff;
+  border-radius: 10rem;
+  box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.16);
+}
+
+.form-wrapper {
+  padding: 50rem 40rem;
+  text-align: center;
+}
+
+.form-title {
+  font-size: 28rem;
+  padding-bottom: 20rem;
+}
+
+.form-input-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5rem;
+}
+
+.form-input-item:not(:last-child) {
+  margin-bottom: 18rem;
+}
+
+.form-input-text {
+  width: 100%;
+  padding: 14rem;
+  box-sizing: border-box;
+  outline: none;
+  border: 1rem solid #9c9c9c;
+  border-radius: 5rem;
+  background-color: #eeeeee;
+  font-family: inherit;
+}
+
+.form-input-label {
+  font-size: 14rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.form-input-btn {
+  margin-top: 20rem;
+  width: 100%;
+  background-color: #5802a3;
+  color: #fff;
+  padding: 16rem 0;
+  border-radius: 5rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.form-text {
+  font-size: 14rem;
+  color: #777;
+  margin-top: 20rem;
+}
+
+.form-text span {
+  color: #5802a3;
+  font-weight: 600;
+  cursor: pointer;
+}
