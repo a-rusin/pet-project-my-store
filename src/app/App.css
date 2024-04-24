@@ -31,6 +31,10 @@ button {
   font-family: inherit;
 }
 
+button:focus {
+  outline: none;
+}
+
 html {
   font-size: var(--font-size-html);
 }
@@ -621,6 +625,7 @@ body {
 .basket-list {
   height: 77vh;
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .basket-title {
@@ -715,15 +720,36 @@ body {
   margin-top: 10rem;
   display: inline-flex;
   align-items: center;
-  padding: 5rem;
   border: 1rem solid #9c9c9c;
   border-radius: 5rem;
   font-size: 12rem;
-  color: #9c9c9c;
+  color: #000;
+}
+
+.basket-item-counter-count {
+  width: 10rem;
+  text-align: center;
 }
 
 .basket-item-counter-btn {
   cursor: pointer;
+  width: 10rem;
+  height: 10rem;
+  background-position: center;
+  background-size: 10rem;
+  background-repeat: no-repeat;
+  padding: 12rem;
+  display: inline-block;
+}
+
+.basket-item-counter-btn-plus {
+  background-image: url("./assets/imgs/plus.svg");
+  border-left: 1rem solid #9c9c9c;
+}
+
+.basket-item-counter-btn-minus {
+  background-image: url("./assets/imgs/minus.svg");
+  border-right: 1rem solid #9c9c9c;
 }
 
 .basket-total-price {

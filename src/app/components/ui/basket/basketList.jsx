@@ -7,9 +7,8 @@ const BasketList = () => {
 
   return (
     <ul className="basket-list">
-      {basketEntities.map((product) => (
-        <BasketListItem key={product._id} product={product} />
-      ))}
+      {basketEntities.length === 0 ? "Корзина пуста" : basketEntities.map((product) => <BasketListItem key={product._id} productInfo={product} />)}
+      {}
     </ul>
   );
 };

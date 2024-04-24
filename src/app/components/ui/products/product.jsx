@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addProductToBasket, getBasketEntities } from "../../../store/basket";
+import formatNumber from "../../../utils/formatNumber";
 
 const Product = ({ product }) => {
   const { _id: productId, name: productName, description, category, rage, reviews, price, stokes, bonus, availability, image } = product;
@@ -28,7 +29,7 @@ const Product = ({ product }) => {
         </div>
         <div className="product-action-block">
           <div className="product-price-group">
-            <p className="product-price">{price} ₽</p>
+            <p className="product-price">{formatNumber(price.toString())} ₽</p>
             <p className="product-bonus">+{bonus} бонусов</p>
             <p className="product-availability">{availability}</p>
           </div>
