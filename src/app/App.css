@@ -297,16 +297,22 @@ body {
   box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.16);
 }
 
-.category-item {
+.category-item-url {
   padding: 8rem 5rem;
   border-radius: 5rem;
   font-size: 14rem;
   font-weight: 600;
   cursor: pointer;
   position: relative;
+  display: block;
 }
 
-.category-item:hover:after {
+.category-list-item:not(:last-child) {
+  margin-bottom: 5rem;
+}
+
+.category-item-url:hover:after,
+.category-item-url.active:after {
   content: "";
   position: absolute;
   right: 5rem;
@@ -320,13 +326,26 @@ body {
   transform: rotate(180deg);
 }
 
-.category-item:hover {
+.category-item-url:hover,
+.category-item-url.active {
   background-color: #5802a3;
   color: #fff;
 }
 
-.category-item:not(:last-child) {
+.category-item-url:not(:last-child) {
   margin-bottom: 5rem;
+}
+
+.category-item-url.disabled {
+  background-color: #e0e0e0;
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.5;
+  color: #000;
+}
+
+.category-item-url.disabled:after {
+  display: none;
 }
 
 .filters {
@@ -516,7 +535,8 @@ body {
   align-items: center;
 }
 
-.product-btn-fav:hover svg {
+.product-btn-fav:hover svg,
+.product-btn-fav.active svg {
   fill: #5802a3;
 }
 
@@ -867,4 +887,75 @@ body {
   color: #5802a3;
   font-weight: 600;
   cursor: pointer;
+}
+
+.favourites-title {
+  margin-bottom: 20rem;
+}
+
+.favourites-right-part {
+  display: flex;
+  gap: 10rem;
+  align-items: center;
+}
+
+.favourites-left-part {
+  display: flex;
+  gap: 10rem;
+  flex-direction: column;
+  flex: 0 0 75%;
+}
+
+.favourites-item {
+  padding: 20rem 40rem;
+  background-color: #fff;
+  border-radius: 10rem;
+  box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.16);
+  display: flex;
+  justify-content: space-between;
+  gap: 10rem;
+}
+
+.favourites-item:not(:last-child) {
+  margin-bottom: 15rem;
+}
+
+.favourites-item-url {
+  font-size: 24rem;
+  text-decoration: underline;
+  font-weight: 700;
+}
+
+.favourites-descr {
+  color: #777;
+  font-size: 16rem;
+}
+
+.favourites-price {
+  font-size: 32rem;
+  font-weight: 700;
+}
+
+.favourites-item-btn {
+  font-family: inherit;
+  border-radius: 10rem;
+
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14rem;
+
+  background-color: #f0f0f0;
+  color: #5802a3;
+  width: 50rem;
+  height: 50rem;
+
+  flex: 0 0 50rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.favourites-item-btn svg {
+  width: 20rem;
+  height: 20rem;
 }

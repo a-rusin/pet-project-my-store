@@ -13,8 +13,8 @@ const CtrlPanel = () => {
     dispatch(openBasket());
   };
 
-  const handleClickLogin = () => {
-    history.push("/login");
+  const handleClickRoute = (path) => {
+    history.push(path);
   };
 
   return (
@@ -29,12 +29,14 @@ const CtrlPanel = () => {
             </button>
           </div>
         </form>
-        <button className="btn-ctrl-panel btn-ctrl-panel-fav">Избранное</button>
+        <button className="btn-ctrl-panel btn-ctrl-panel-fav" onClick={() => handleClickRoute("/favourites")}>
+          Избранное
+        </button>
         <button className="btn-ctrl-panel btn-ctrl-panel-basket" onClick={handleClickOpenBasket}>
           {basketEntities.length !== 0 && <span className="basket-product-count">{basketEntities.length}</span>}
           Корзина
         </button>
-        <button className="btn-ctrl-panel btn-ctrl-panel-login" onClick={handleClickLogin}>
+        <button className="btn-ctrl-panel btn-ctrl-panel-login" onClick={() => handleClickRoute("/login")}>
           Войти
         </button>
       </div>

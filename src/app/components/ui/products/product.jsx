@@ -1,19 +1,26 @@
 import { useDispatch, useSelector } from "react-redux";
 import { addProductToBasket, getBasketEntities } from "../../../store/basket";
 import formatNumber from "../../../utils/formatNumber";
+import { addProductToFavourite, getFavouritesProductsList } from "../../../store/favourites";
 
 const Product = ({ product }) => {
   const { _id: productId, name: productName, description, category, rage, reviews, price, stokes, bonus, availability, image } = product;
 
   const dispatch = useDispatch();
 
-  const handleClickProductToBasket = (productId) => {
-    dispatch(addProductToBasket(productId));
+  const handleClickProductToBasket = (product) => {
+    dispatch(addProductToBasket(product));
+  };
+
+  const handleClickProductToFavourite = (product) => {
+    dispatch(addProductToFavourite(product));
   };
 
   const basketEntities = useSelector(getBasketEntities());
+  const favouritesEntities = useSelector(getFavouritesProductsList());
 
-  const isProductInBasket = basketEntities.find((product) => product._id === productId);
+  const isProductInBasket = basketEntities.find((product) => product.productId === productId);
+  const isProductInFavourites = favouritesEntities.find((product) => product._id === productId);
 
   return (
     <li className="products-item">
@@ -36,12 +43,15 @@ const Product = ({ product }) => {
           <div className="product-btns-group">
             <button
               className={isProductInBasket ? "product-btn product-btn-buy active" : "product-btn product-btn-buy"}
-              onClick={() => handleClickProductToBasket(productId)}
+              onClick={() => handleClickProductToBasket(product)}
               disabled={isProductInBasket}
             >
               {isProductInBasket ? "Уже в корзине" : "В корзину"}
             </button>
-            <button className="product-btn product-btn-fav">
+            <button
+              className={isProductInFavourites ? "product-btn product-btn-fav active" : "product-btn product-btn-fav"}
+              onClick={() => handleClickProductToFavourite(product)}
+            >
               <svg
                 width="800px"
                 height="800px"

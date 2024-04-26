@@ -1,18 +1,28 @@
 import { useDispatch, useSelector } from "react-redux";
-import { clearBasket, closeBasket, getBasketEntities, getBasketStatus } from "../../../store/basket";
+import { clearBasket, closeBasket, getBasketEntities, getBasketStatus, getProductsInfo } from "../../../store/basket";
 import BasketList from "./basketList";
 import { getProductsLoadingStatus } from "../../../store/products";
 import Loader from "../../common/loader";
 import formatNumber from "../../../utils/formatNumber";
+import { useEffect } from "react";
+import localStorageService from "../../../services/localStorage.service";
+import localStorageConstants from "../../../../constants/localStorage.constants";
 
 const Basket = () => {
   const isBasketOpen = useSelector(getBasketStatus());
-  const isProductsLoading = useSelector(getProductsLoadingStatus());
   const basketEntities = useSelector(getBasketEntities());
 
-  const totalPrice = basketEntities.reduce((acc, item) => item.product.price * item.count + acc, 0);
+  const totalPrice = basketEntities.reduce((acc, item) => item.productInfo.price * item.count + acc, 0);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const basketLS = localStorageService.get(localStorageConstants.basket) || [];
+
+    if (basketLS.length !== 0) {
+      dispatch(getProductsInfo(basketLS));
+    }
+  }, []);
 
   const handleClickParanja = () => {
     document.body.classList.remove("blocked");
@@ -29,7 +39,7 @@ const Basket = () => {
       <div className="basket-wrapper">
         <div className="basket-top-group">
           <h3 className="basket-title">Корзина</h3>
-          {isProductsLoading ? <Loader /> : <BasketList />}
+          <BasketList />
         </div>
         <div className="basket-bottom-group">
           <div className="basket-total-price">

@@ -18,13 +18,22 @@ import { loadProductsList } from "./store/products";
 import { useEffect } from "react";
 import Login from "./layout/login";
 import { loadCategoriesList } from "./store/categories";
+import Favourites from "./layout/favourites";
+import localStorageService from "./services/localStorage.service";
+import localStorageConstants from "../constants/localStorage.constants";
+import { getProductsInfo } from "./store/favourites";
 
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(loadProductsList());
     dispatch(loadCategoriesList());
+
+    const favouritesLS = localStorageService.get(localStorageConstants.favourites) || [];
+
+    if (favouritesLS !== 0) {
+      dispatch(getProductsInfo(favouritesLS));
+    }
   }, []);
 
   return (
@@ -37,6 +46,7 @@ const App = () => {
               <Route path="/" exact component={Products} />
               <Route path="/products/item/:productId" component={Product} />
               <Route path="/products/:productsCategory?" component={Products} />
+              <Route path="/favourites" component={Favourites} />
               <Route path="/news" component={News} />
               <Route path="/stocks" component={Stocks} />
               <Route path="/contacts" component={Contacts} />

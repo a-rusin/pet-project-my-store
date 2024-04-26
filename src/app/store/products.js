@@ -26,11 +26,11 @@ const productsSlice = createSlice({
 const { reducer: productsReducer } = productsSlice;
 const { productsRequested, productsRecived, productsRequstFailed } = productsSlice.actions;
 
-export const loadProductsList = () => async (dispatch) => {
+export const loadProductsList = (path) => async (dispatch) => {
   dispatch(productsRequested());
 
   try {
-    const data = await productsService.getAll();
+    const data = await productsService.getAll(path);
 
     setTimeout(() => {
       dispatch(productsRecived(data));
