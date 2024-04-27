@@ -14,7 +14,6 @@ import Contacts from "./layout/contacts";
 import Feedback from "./layout/feedback";
 import About from "./layout/about";
 import NotFound from "./layout/notFound";
-import { loadProductsList } from "./store/products";
 import { useEffect } from "react";
 import Login from "./layout/login";
 import { loadCategoriesList } from "./store/categories";
@@ -22,6 +21,7 @@ import Favourites from "./layout/favourites";
 import localStorageService from "./services/localStorage.service";
 import localStorageConstants from "../constants/localStorage.constants";
 import { getProductsInfo } from "./store/favourites";
+import { getUser } from "./store/auth";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -33,6 +33,13 @@ const App = () => {
 
     if (favouritesLS !== 0) {
       dispatch(getProductsInfo(favouritesLS));
+    }
+
+    const isTokenLS = localStorageService.get(localStorageConstants.token);
+    const isUserIdLS = localStorageService.get(localStorageConstants.userId);
+
+    if (isTokenLS && isUserIdLS) {
+      dispatch(getUser(isUserIdLS));
     }
   }, []);
 

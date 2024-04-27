@@ -106,10 +106,16 @@ body {
   text-decoration: none;
   color: #000;
   font-size: 14rem;
+  font-weight: 600;
 }
 
 .nav-item-url:hover {
   color: #5802a3;
+}
+
+.phone {
+  font-size: 14rem;
+  font-weight: 600;
 }
 
 .ctrl-panel-wrapper {
@@ -125,11 +131,17 @@ body {
   color: #5802a3;
 }
 
+.ctrl-panel-btn-groups {
+  display: flex;
+  gap: 10rem;
+}
+
 .btn-ctrl-panel {
   border: none;
   background-color: transparent;
-  width: 200rem;
+  width: 110rem;
   height: 58rem;
+  flex: 0 0 110rem;
   cursor: pointer;
   font-family: inherit;
   font-size: 14rem;
@@ -178,8 +190,22 @@ body {
   align-items: center;
 }
 
+.btn-ctrl-panel-login-process {
+  background-image: none;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 5rem;
+}
+
 .btn-ctrl-panel-login {
   background-image: url("./assets/imgs/login.svg");
+  background-position: 50% 20%;
+  background-size: 24rem;
+}
+
+.btn-ctrl-panel-user {
+  background-image: url("./assets/imgs/user2.svg");
   background-position: 50% 20%;
   background-size: 24rem;
 }
@@ -631,6 +657,26 @@ body {
   }
 }
 
+.loader-spinner {
+  width: 22rem;
+  height: 22rem;
+  border: 3rem solid #e0e0e0;
+  border-bottom-color: #5802a3;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .basket {
   position: fixed;
   top: 0;
@@ -866,6 +912,12 @@ body {
   cursor: pointer;
 }
 
+.form-error-message {
+  color: red;
+  font-weight: 700;
+  font-size: 14rem;
+}
+
 .form-input-btn {
   margin-top: 20rem;
   width: 100%;
@@ -875,6 +927,13 @@ body {
   border-radius: 5rem;
   cursor: pointer;
   font-weight: 600;
+}
+
+.form-input-btn:disabled {
+  background-color: #9c9c9c;
+  color: #fff;
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .form-text {
@@ -958,4 +1017,43 @@ body {
 .favourites-item-btn svg {
   width: 20rem;
   height: 20rem;
+}
+
+.user-panel {
+  position: relative;
+}
+
+.user-menu {
+  position: absolute;
+  bottom: -110rem;
+  right: 0;
+  background-color: #fff;
+  border: 1rem solid #e0e0e0;
+  border-radius: 10rem;
+  min-width: 180rem;
+  overflow: hidden;
+  padding: 5rem;
+  box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.16);
+}
+
+.user-menu.hide {
+  display: none;
+}
+
+.user-menu-item {
+  padding: 8rem;
+  cursor: pointer;
+  border-radius: 5rem;
+  font-weight: 600;
+  font-size: 14rem;
+  background-color: #eeeeee;
+}
+
+.user-menu-item:not(:last-child) {
+  margin-bottom: 5rem;
+}
+
+.user-menu-item:hover {
+  background-color: #5802a3;
+  color: #fff;
 }

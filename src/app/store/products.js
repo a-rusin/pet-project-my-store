@@ -13,8 +13,8 @@ const productsSlice = createSlice({
       state.isLoading = true;
     },
     productsRecived: (state, action) => {
-      state.entities = action.payload;
       state.isLoading = false;
+      state.entities = action.payload;
     },
     productsRequstFailed: (state, action) => {
       state.isLoading = false;
@@ -32,9 +32,7 @@ export const loadProductsList = (path) => async (dispatch) => {
   try {
     const data = await productsService.getAll(path);
 
-    setTimeout(() => {
-      dispatch(productsRecived(data));
-    }, 2000);
+    dispatch(productsRecived(data));
   } catch (error) {}
 };
 

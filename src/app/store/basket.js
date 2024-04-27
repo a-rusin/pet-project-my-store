@@ -124,10 +124,7 @@ export const getProductsInfo = (productArray) => async (dispatch) => {
       productId: item.productId,
       productInfo: data.find((p) => p._id === item.productId),
     }));
-
-    setTimeout(() => {
-      dispatch(basketProductsRecived(productEntities));
-    }, 1500);
+    dispatch(basketProductsRecived(productEntities));
   } catch (error) {}
 };
 

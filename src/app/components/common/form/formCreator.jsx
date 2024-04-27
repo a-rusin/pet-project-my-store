@@ -1,4 +1,4 @@
-const FormCreator = ({ formState, submitForm, handleChange }) => {
+const FormCreator = ({ formState, submitForm, handleChange, btnText, btnDisabled, error }) => {
   return (
     <form className="form-content" onSubmit={submitForm}>
       {formState.map((input) => (
@@ -18,8 +18,10 @@ const FormCreator = ({ formState, submitForm, handleChange }) => {
         </div>
       ))}
 
-      <button type="submit" className="form-input-btn">
-        Войти
+      <p className="form-error-message">{error}</p>
+
+      <button type="submit" className="form-input-btn" disabled={btnDisabled}>
+        {btnDisabled ? "Ждите..." : btnText}
       </button>
     </form>
   );

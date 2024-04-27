@@ -31,9 +31,7 @@ export const loadCategoriesList = () => async (dispatch) => {
   try {
     dispatch(categoriesRequested());
     const data = await categoriesService.getAll();
-    setTimeout(() => {
-      dispatch(categoriesRecived(data));
-    }, 1000);
+    dispatch(categoriesRecived(data));
   } catch (error) {}
 };
 

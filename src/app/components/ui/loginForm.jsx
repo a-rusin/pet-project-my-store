@@ -1,13 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import FormCreator from "../common/form/formCreator";
+import { useDispatch, useSelector } from "react-redux";
+import { getAuthError, getIsAuthLoading, login } from "../../store/auth";
 
 const formConfig = [
   { id: 0, label: "E-mail", name: "email", value: "", placeholder: "ivan.ivanov@mail.ru", type: "text", isRequired: true },
   { id: 1, label: "Пароль", name: "password", value: "", placeholder: "12345678", type: "text", isRequired: true },
 ];
 
-const LoginForm = () => {
+const LoginForm = ({ handleClickChangeLoginState, loginFormState }) => {
   const [formState, setFormState] = useState(formConfig);
+
+  const dispatch = useDispatch();
+
+  const isBtnDisabled = useSelector(getIsAuthLoading());
+
+  const errors = useSelector(getAuthError());
 
   const handleChange = (name, value) => {
     setFormState((prevState) => {
@@ -20,48 +28,36 @@ const LoginForm = () => {
     });
   };
 
+  const resetFormValue = () => {
+    setFormState((prevState) => {
+      return prevState.map((item) => {
+        item.value = "";
+        return item;
+      });
+    });
+  };
+
+  useEffect(() => {
+    resetFormValue();
+  }, [loginFormState]);
+
   const submitForm = (e) => {
     e.preventDefault();
     const data = formState.reduce((acc, input) => {
       acc[input.name] = input.value;
       return acc;
     }, {});
-    console.log("submit", data);
+    dispatch(login(data));
   };
 
-  return <FormCreator formState={formState} handleChange={handleChange} submitForm={submitForm} />;
+  return (
+    <>
+      <FormCreator formState={formState} handleChange={handleChange} submitForm={submitForm} btnText="Войти" btnDisabled={isBtnDisabled} error={errors} />
+      <p className="form-text">
+        Нету аккаунта? <span onClick={() => handleClickChangeLoginState(false)}>Регистрация</span>
+      </p>
+    </>
+  );
 };
-
-// const LoginForm = () => {
-//   return (
-//     <form className="form-content">
-//       <div className="form-input-item">
-//         <label htmlFor="email" className="form-input-label">
-//           E-mail:
-//         </label>
-//         <input type="text" className="form-input-text" placeholder="ivan.ivanov@mail.ru" name="email" id="email" />
-//       </div>
-//       <div className="form-input-item">
-//         <label htmlFor="password" className="form-input-label">
-//           Пароль:
-//         </label>
-//         <input type="text" className="form-input-text" placeholder="12345678" name="password" id="password" />
-//       </div>
-//       <button type="submit" className="form-input-btn">
-//         Войти
-//       </button>
-//     </form>
-//   );
-// };
-
-/*
-
-formConfig:
-
-[
-  {id: 0, label: 'E-mail', name: 'email', value: '', placeholder: 'ivan.ivanov@mail.ru', type: 'text', isRequired: true}
-]
-
-*/
 
 export default LoginForm;

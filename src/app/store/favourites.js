@@ -41,9 +41,7 @@ export const getProductsInfo = (productArray) => async (dispatch) => {
     dispatch(favouritesRequested());
     const data = await productsService.getProductsByArray(productArray);
 
-    setTimeout(() => {
-      dispatch(favouritesRecived(data));
-    }, [2000]);
+    dispatch(favouritesRecived(data));
   } catch (error) {}
 };
 
