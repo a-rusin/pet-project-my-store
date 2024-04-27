@@ -9,7 +9,7 @@ import paginate from "../../utils/paginate";
 import Loader from "../common/loader";
 import _ from "lodash";
 import { useParams } from "react-router-dom";
-import { getCategoriesLoadingStatus, getCategoryName } from "../../store/categories";
+import { getCategoriesLoadingStatus, getCategoryNameByPath } from "../../store/categories";
 
 const filterDefaultValue = {
   key: "reviews",
@@ -27,7 +27,7 @@ const ProductsPage = () => {
 
   const dispatch = useDispatch();
 
-  const activeCategory = useSelector(getCategoryName(productsCategory));
+  const activeCategory = useSelector(getCategoryNameByPath(productsCategory));
   const isCategoryLoading = useSelector(getCategoriesLoadingStatus());
 
   const categoryName = activeCategory ? activeCategory.name : "Все товары";

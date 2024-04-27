@@ -85,7 +85,9 @@ export const getUser = (userId) => async (dispatch) => {
     const { userInfo } = await authService.getUser(userId);
 
     dispatch(authSetUserSuccess(userInfo));
-  } catch (error) {}
+  } catch (error) {
+    dispatch(authFailed(error.response.data.message));
+  }
 };
 
 export const logOut = () => (dispatch) => {

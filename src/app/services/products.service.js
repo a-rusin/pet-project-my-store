@@ -11,6 +11,10 @@ const productsService = {
     const { data } = await httpService.post(productsEndPoint + "/basket", { products: productsArray });
     return data;
   },
+  getProductById: async (productId) => {
+    const { data } = await httpService.get(productsEndPoint + "/item/" + productId);
+    return data;
+  },
 };
 
 export default productsService;

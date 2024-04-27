@@ -478,6 +478,7 @@ body {
   display: flex;
   gap: 5rem;
   width: 100%;
+  height: 50rem;
 }
 
 .product-price {
@@ -517,6 +518,11 @@ body {
 
 .product-name {
   font-size: 18rem;
+  font-weight: 700;
+}
+
+.product-name:hover {
+  text-decoration: underline;
 }
 
 .product-info-text {
@@ -534,7 +540,7 @@ body {
   font-family: inherit;
   border-radius: 10rem;
   display: block;
-  height: 50rem;
+  height: 100%;
   cursor: pointer;
   font-weight: 500;
   font-size: 14rem;
@@ -543,6 +549,7 @@ body {
 .product-btn-buy {
   background-color: #5802a3;
   flex: 0 1 100%;
+  min-width: 200rem;
 }
 
 .product-btn-buy.active {
@@ -1056,4 +1063,86 @@ body {
 .user-menu-item:hover {
   background-color: #5802a3;
   color: #fff;
+}
+
+.product-card-title {
+  font-size: 28rem;
+}
+
+.product-card-wrapper {
+  background-color: #fff;
+  padding: 25rem 20rem;
+  border-radius: 10rem;
+  margin: 20rem 0;
+  box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.16);
+}
+
+.product-card-block {
+  display: flex;
+  gap: 40rem;
+}
+
+.product-card-image {
+  width: 500rem;
+}
+
+.product-card-main-info {
+  display: flex;
+  flex-direction: column;
+  gap: 20rem;
+  width: 100%;
+}
+
+.product-card-name {
+  font-size: 24rem;
+  font-weight: 600;
+}
+
+.product-card-other-text {
+  font-size: 16rem;
+}
+
+.product-card-other-text strong {
+  color: #777;
+  font-weight: 400;
+}
+
+.comments-title {
+  font-size: 20rem;
+  font-weight: 500;
+}
+
+.product-card-bottom-group {
+  display: flex;
+  align-items: center;
+  gap: 10rem;
+}
+
+.product-card-price-group {
+  flex: 1 0 60%;
+  background-color: #eeeeee;
+  border-radius: 10rem;
+  display: flex;
+  gap: 10rem;
+  align-items: center;
+  padding: 0 20rem;
+  height: 100%;
+}
+
+.product-card-price-group .product-bonus {
+  background-color: #5802a3;
+  color: #fff;
+}
+
+.product-card-btns-group {
+  display: flex;
+  gap: 10rem;
+  flex: 0 1 100%;
+  height: 70rem;
+}
+
+.product-card-price {
+  font-size: 24rem;
+  font-weight: 600;
+  color: #5802a3;
 }

@@ -1,5 +1,5 @@
 const LoaderSpinner = () => {
-  return <span class="loader-spinner"></span>;
+  return <span className="loader-spinner"></span>;
 };
 
 export default LoaderSpinner;
