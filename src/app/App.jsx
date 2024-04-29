@@ -19,7 +19,7 @@ import Login from "./layout/login";
 import { loadCategoriesList } from "./store/categories";
 import Favourites from "./layout/favourites";
 import localStorageService from "./services/localStorage.service";
-import localStorageConstants from "../constants/localStorage.constants";
+import localStorageConstants from "./constants/localStorage.constants";
 import { getProductsInfo } from "./store/favourites";
 import { getUser } from "./store/auth";
 

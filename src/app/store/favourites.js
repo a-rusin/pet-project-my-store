@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import localStorageService from "../services/localStorage.service";
-import localStorageConstants from "../../constants/localStorage.constants";
+import localStorageConstants from "../constants/localStorage.constants";
 import productsService from "../services/products.service";
 
 const favouritesSlice = createSlice({

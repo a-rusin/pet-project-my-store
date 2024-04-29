@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import authService from "../services/auth.service";
 import localStorageService from "../services/localStorage.service";
-import localStorageConstants from "../../constants/localStorage.constants";
+import localStorageConstants from "../constants/localStorage.constants";
 import customHistory from "../utils/history";
 
 const authSlice = createSlice({

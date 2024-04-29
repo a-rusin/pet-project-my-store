@@ -6,7 +6,7 @@ import Loader from "../../common/loader";
 import formatNumber from "../../../utils/formatNumber";
 import { useEffect } from "react";
 import localStorageService from "../../../services/localStorage.service";
-import localStorageConstants from "../../../../constants/localStorage.constants";
+import localStorageConstants from "../../../constants/localStorage.constants";
 
 const Basket = () => {
   const isBasketOpen = useSelector(getBasketStatus());
