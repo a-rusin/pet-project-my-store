@@ -5,7 +5,7 @@ const Menu = () => {
     <nav className="nav">
       <ul className="nav-list">
         <li className="nav-item">
-          <Link to="/products" className="nav-item-url">
+          <Link to="/" className="nav-item-url">
             Главная
           </Link>
         </li>

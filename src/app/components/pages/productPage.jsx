@@ -38,7 +38,9 @@ const ProductPage = () => {
 
   return (
     <div className="product-card">
-      <h2 className="product-card-title">{isLoading ? "Загрузка товара..." : productInfo.name}</h2>
+      <h2 className="product-card-title">
+        {isLoading ? "Загрузка товара..." : productInfo.name}
+      </h2>
       {isLoading ? (
         <div className="product-card-wrapper">
           <Loader />
@@ -46,7 +48,7 @@ const ProductPage = () => {
       ) : (
         <>
           <ProductCard productInfo={productInfo} />
-          <CommentsList />
+          <CommentsList productId={productId} />
         </>
       )}
     </div>

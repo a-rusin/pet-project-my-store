@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <footer className="footer">
@@ -9,34 +11,34 @@ const Footer = () => {
         </ul>
         <ul className="footer-list">
           <li className="footer-item">
-            <a href="main.html" className="footer-item-url">
+            <Link to="/" className="footer-item-url">
               Главная
-            </a>
+            </Link>
           </li>
           <li className="footer-item">
-            <a href="main.html" className="footer-item-url">
+            <Link to="/news" className="footer-item-url">
               Новости
-            </a>
+            </Link>
           </li>
           <li className="footer-item">
-            <a href="main.html" className="footer-item-url">
+            <Link to="/stocks" className="footer-item-url">
               Акции
-            </a>
+            </Link>
           </li>
           <li className="footer-item">
-            <a href="main.html" className="footer-item-url">
+            <Link to="/contacts" className="footer-item-url">
               Контакты
-            </a>
+            </Link>
           </li>
           <li className="footer-item">
-            <a href="main.html" className="footer-item-url">
+            <Link to="/feedback" className="footer-item-url">
               Обратная связь
-            </a>
+            </Link>
           </li>
           <li className="footer-item">
-            <a href="main.html" className="footer-item-url">
+            <Link to="/about" className="footer-item-url">
               О нас
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

@@ -4,6 +4,7 @@ import categoriesReducer from "./categories";
 import basketReducer from "./basket";
 import favouritesReducer from "./favourites";
 import authReducer from "./auth";
+import commentsReducer from "./comments";
 
 const rootReducer = combineReducers({
   products: productsReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   basket: basketReducer,
   favourites: favouritesReducer,
   auth: authReducer,
+  comments: commentsReducer,
 });
 
 export function createStore() {

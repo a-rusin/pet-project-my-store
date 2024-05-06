@@ -7,7 +7,7 @@ import customHistory from "../utils/history";
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    isLoading: false,
+    isLoading: true,
     currentUser: null,
     error: null,
     successRegister: false,
@@ -43,8 +43,16 @@ const authSlice = createSlice({
   },
 });
 
-const { authLoginSuccess, authRegisterSuccess, authRequested, authSetUserSuccess, authLogOut, authFailed, authResetError, authResetRegisterState } =
-  authSlice.actions;
+const {
+  authLoginSuccess,
+  authRegisterSuccess,
+  authRequested,
+  authSetUserSuccess,
+  authLogOut,
+  authFailed,
+  authResetError,
+  authResetRegisterState,
+} = authSlice.actions;
 
 const { reducer: authReducer } = authSlice;
 
@@ -98,6 +106,10 @@ export const logOut = () => (dispatch) => {
   customHistory.replace("/");
 };
 
+export const stopLoading = () => (dispatch) => {
+  dispatch(authFailed("Не авторизован"));
+};
+
 export const resetAuthError = () => (dispatch) => {
   dispatch(authResetError());
 };
@@ -109,6 +121,9 @@ export const resetRegisterStatus = () => (dispatch) => {
 export const getIsAuthLoading = () => (state) => state.auth.isLoading;
 
 export const getCurrentUser = () => (state) => state.auth.currentUser;
+
+export const isRoleIncluded = (role) => (state) =>
+  state.auth.currentUser?.roles.includes(role) || false;
 
 export const getAuthError = () => (state) => state.auth.error;
 

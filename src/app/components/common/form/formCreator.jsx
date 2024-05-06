@@ -1,4 +1,11 @@
-const FormCreator = ({ formState, submitForm, handleChange, btnText, btnDisabled, error }) => {
+const FormCreator = ({
+  formState,
+  submitForm,
+  handleChange,
+  btnText,
+  btnDisabled,
+  error,
+}) => {
   return (
     <form className="form-content" onSubmit={submitForm}>
       {formState.map((input) => (
@@ -6,15 +13,27 @@ const FormCreator = ({ formState, submitForm, handleChange, btnText, btnDisabled
           <label htmlFor={input.name} className="form-input-label">
             {input.label}
           </label>
-          <input
-            type={input.type}
-            className="form-input-text"
-            placeholder={input.placeholder}
-            name={input.name}
-            id={input.name}
-            onChange={(e) => handleChange(input.name, e.target.value)}
-            value={input.value}
-          />
+
+          {input.type === "text" ? (
+            <input
+              type={input.type}
+              className="form-input-text"
+              placeholder={input.placeholder}
+              name={input.name}
+              id={input.name}
+              onChange={(e) => handleChange(input.name, e.target.value)}
+              value={input.value}
+            />
+          ) : (
+            <textarea
+              className="form-input-text form-textarea"
+              name={input.name}
+              id={input.name}
+              onChange={(e) => handleChange(input.name, e.target.value)}
+              value={input.value}
+              placeholder={input.placeholder}
+            ></textarea>
+          )}
         </div>
       ))}
 

@@ -1,5 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
-import { getCategoriesList, getCategoriesLoadingStatus, loadCategoriesList } from "./../../store/categories";
+import {
+  getCategoriesList,
+  getCategoriesLoadingStatus,
+  loadCategoriesList,
+} from "./../../store/categories";
 import Loader from "../common/loader";
 import { Link, useParams } from "react-router-dom";
 import { getProductsLoadingStatus } from "../../store/products";
@@ -31,7 +35,10 @@ const CategoriesList = () => {
         <ul className="category-list">
           {categories.map((category) => (
             <li key={category._id} className="category-list-item">
-              <Link to={"/products/" + category.path} className={getClassForCategoryItem(category.path)}>
+              <Link
+                to={"/products/" + category.path}
+                className={getClassForCategoryItem(category.path)}
+              >
                 {category.name}
               </Link>
             </li>

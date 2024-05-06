@@ -3,13 +3,20 @@ import CategoriesList from "../ui/categoriesList";
 import Filters from "../ui/filters";
 import ProductsList from "../ui/products/productsList";
 import Slider from "../ui/slider";
-import { getProductsList, getProductsLoadingStatus, loadProductsList } from "../../store/products";
+import {
+  getProductsList,
+  getProductsLoadingStatus,
+  loadProductsList,
+} from "../../store/products";
 import { useEffect, useState } from "react";
 import paginate from "../../utils/paginate";
 import Loader from "../common/loader";
 import _ from "lodash";
 import { useParams } from "react-router-dom";
-import { getCategoriesLoadingStatus, getCategoryNameByPath } from "../../store/categories";
+import {
+  getCategoriesLoadingStatus,
+  getCategoryNameByPath,
+} from "../../store/categories";
 
 const filterDefaultValue = {
   key: "reviews",
@@ -34,7 +41,8 @@ const ProductsPage = () => {
 
   const [currentPage, setCurrentPage] = useState(1);
 
-  const [currentSortFilter, setCurrentSortFilter] = useState(filterDefaultValue);
+  const [currentSortFilter, setCurrentSortFilter] =
+    useState(filterDefaultValue);
 
   const isProductsLoading = useSelector(getProductsLoadingStatus());
 
@@ -74,7 +82,9 @@ const ProductsPage = () => {
           <CategoriesList />
         </div>
         <div className="right-part">
-          <h2 className="products-list-title">{!isCategoryLoading && categoryName}</h2>
+          {!isCategoryLoading && (
+            <h2 className="products-list-title">{categoryName}</h2>
+          )}
           {isProductsLoading ? (
             <li className="products-item products-item-loader">
               <Loader />

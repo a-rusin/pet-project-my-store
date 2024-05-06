@@ -1,5 +1,7 @@
+import FeedbackPage from "../components/pages/feedbackPage";
+
 const Feedback = () => {
-  return <h1>Feedback</h1>;
+  return <FeedbackPage />;
 };
 
 export default Feedback;

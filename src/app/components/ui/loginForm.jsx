@@ -4,8 +4,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAuthError, getIsAuthLoading, login } from "../../store/auth";
 
 const formConfig = [
-  { id: 0, label: "E-mail", name: "email", value: "", placeholder: "ivan.ivanov@mail.ru", type: "text", isRequired: true },
-  { id: 1, label: "Пароль", name: "password", value: "", placeholder: "12345678", type: "text", isRequired: true },
+  {
+    id: 0,
+    label: "E-mail",
+    name: "email",
+    value: "",
+    placeholder: "ivan.ivanov@mail.ru",
+    type: "text",
+    isRequired: true,
+  },
+  {
+    id: 1,
+    label: "Пароль",
+    name: "password",
+    value: "",
+    placeholder: "12345678",
+    type: "text",
+    isRequired: true,
+  },
 ];
 
 const LoginForm = ({ handleClickChangeLoginState, loginFormState }) => {
@@ -52,9 +68,19 @@ const LoginForm = ({ handleClickChangeLoginState, loginFormState }) => {
 
   return (
     <>
-      <FormCreator formState={formState} handleChange={handleChange} submitForm={submitForm} btnText="Войти" btnDisabled={isBtnDisabled} error={errors} />
+      <FormCreator
+        formState={formState}
+        handleChange={handleChange}
+        submitForm={submitForm}
+        btnText="Войти"
+        btnDisabled={isBtnDisabled}
+        error={errors}
+      />
       <p className="form-text">
-        Нету аккаунта? <span onClick={() => handleClickChangeLoginState(false)}>Регистрация</span>
+        Нету аккаунта?{" "}
+        <span onClick={() => handleClickChangeLoginState(false)}>
+          Регистрация
+        </span>
       </p>
     </>
   );

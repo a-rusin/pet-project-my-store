@@ -6,7 +6,9 @@ import localStorageConstants from "../constants/localStorage.constants";
 const httpAuth = axios.create({
   baseURL: config.apiEndPoint,
   headers: {
-    Authorization: `Bearer ${localStorageService.get(localStorageConstants.token)}`,
+    Authorization: `Bearer ${localStorageService.get(
+      localStorageConstants.token
+    )}`,
   },
 });
 

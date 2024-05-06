@@ -5,7 +5,10 @@ const authEndPoint = "auth/";
 
 const authService = {
   register: async (userData) => {
-    const { data } = await httpService.post(authEndPoint + "register", userData);
+    const { data } = await httpService.post(
+      authEndPoint + "register",
+      userData
+    );
     return data;
   },
   login: async (userData) => {
@@ -13,7 +16,13 @@ const authService = {
     return data;
   },
   getUser: async (userId) => {
-    const { data } = await httpAuthService.post(authEndPoint + "getUser", { userId });
+    const { data } = await httpAuthService.post(authEndPoint + "getUser", {
+      userId,
+    });
+    return data;
+  },
+  getAllUsers: async () => {
+    const { data } = await httpAuthService.get(authEndPoint + "getAllUsers");
     return data;
   },
 };

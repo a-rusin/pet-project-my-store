@@ -24,7 +24,8 @@ const productsSlice = createSlice({
 });
 
 const { reducer: productsReducer } = productsSlice;
-const { productsRequested, productsRecived, productsRequstFailed } = productsSlice.actions;
+const { productsRequested, productsRecived, productsRequstFailed } =
+  productsSlice.actions;
 
 export const loadProductsList = (path) => async (dispatch) => {
   dispatch(productsRequested());
@@ -37,6 +38,7 @@ export const loadProductsList = (path) => async (dispatch) => {
 };
 
 export const getProductsList = () => (state) => state.products.entities;
-export const getProductsLoadingStatus = () => (state) => state.products.isLoading;
+export const getProductsLoadingStatus = () => (state) =>
+  state.products.isLoading;
 
 export default productsReducer;

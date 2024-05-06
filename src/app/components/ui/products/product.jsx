@@ -4,15 +4,35 @@ import BuyButton from "../../common/buttons/buyButton";
 import AddToFavouriteButton from "../../common/buttons/addToFavouriteBtn";
 import useProductInfo from "../../../hooks/useProductInfo";
 import { useSelector } from "react-redux";
-import { getCategoriesLoadingStatus, getCategoryNameById } from "../../../store/categories";
+import {
+  getCategoriesLoadingStatus,
+  getCategoryNameByPath,
+} from "../../../store/categories";
 import ProductBonus from "../../common/product/productBonus";
 
 const Product = ({ product }) => {
-  const { _id: productId, name: productName, description, category, rage, reviews, price, stokes, bonus, availability, image } = product;
+  const {
+    _id: productId,
+    name: productName,
+    description,
+    category,
+    rage,
+    reviews,
+    price,
+    stokes,
+    bonus,
+    availability,
+    image,
+  } = product;
 
-  const { isProductInBasket, isProductInFavourites, handleClickProductToBasket, handleClickProductToFavourite } = useProductInfo(product);
+  const {
+    isProductInBasket,
+    isProductInFavourites,
+    handleClickProductToBasket,
+    handleClickProductToFavourite,
+  } = useProductInfo(product);
 
-  const categoryItem = useSelector(getCategoryNameById(category));
+  const categoryItem = useSelector(getCategoryNameByPath(category));
   const isCategoryLoading = useSelector(getCategoriesLoadingStatus());
 
   return (
@@ -24,7 +44,14 @@ const Product = ({ product }) => {
             {productName}
           </Link>
           <p className="product-info-text">{description}</p>
-          <p className="product-info-text">Категория: {isCategoryLoading ? "Загрузка..." : categoryItem.name}</p>
+          <p className="product-info-text">
+            Категория:{" "}
+            {isCategoryLoading
+              ? "Загрузка..."
+              : categoryItem
+              ? categoryItem.name
+              : "None"}
+          </p>
           <p className="product-info-text">Рейтинг: {rage}</p>
           <p className="product-info-text">Отзывы: {reviews}</p>
           <p className="product-info-text">Артикул: {productId}</p>
@@ -36,7 +63,11 @@ const Product = ({ product }) => {
             <p className="product-availability">{availability}</p>
           </div>
           <div className="product-btns-group">
-            <BuyButton isProductInBasket={isProductInBasket} handleClickProductToBasket={handleClickProductToBasket} product={product} />
+            <BuyButton
+              isProductInBasket={isProductInBasket}
+              handleClickProductToBasket={handleClickProductToBasket}
+              product={product}
+            />
             <AddToFavouriteButton
               isProductInFavourites={isProductInFavourites}
               handleClickProductToFavourite={handleClickProductToFavourite}
