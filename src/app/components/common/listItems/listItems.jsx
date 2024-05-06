@@ -1,10 +1,4 @@
-const ListItems = ({
-  items,
-  onClickEdit,
-  onClickDelete,
-  onClickOpen,
-  btnDisabled,
-}) => {
+const ListItems = ({ items, onClickEdit, onClickDelete, onClickOpen, btnDisabled }) => {
   const name = (params) => {};
 
   return (
@@ -16,27 +10,9 @@ const ListItems = ({
             <div className="list-item-name">{item.name}</div>
           </div>
           <div className="list-item-btns">
-            {onClickEdit && (
-              <button
-                className="list-item-btn list-item-btn-edit"
-                onClick={() => onClickEdit(item._id)}
-                disabled={btnDisabled}
-              ></button>
-            )}
-            {onClickDelete && (
-              <button
-                className="list-item-btn list-item-btn-delete"
-                onClick={() => onClickDelete(item._id)}
-                disabled={btnDisabled}
-              ></button>
-            )}
-            {onClickOpen && (
-              <button
-                className="list-item-btn list-item-btn-open"
-                onClick={() => onClickOpen(item._id)}
-                disabled={btnDisabled}
-              ></button>
-            )}
+            {onClickEdit && <button className="list-item-btn list-item-btn-edit" onClick={() => onClickEdit(item._id)} disabled={btnDisabled}></button>}
+            {onClickOpen && <button className="list-item-btn list-item-btn-open" onClick={() => onClickOpen(item._id)} disabled={btnDisabled}></button>}
+            {onClickDelete && <button className="list-item-btn list-item-btn-delete" onClick={() => onClickDelete(item._id)} disabled={btnDisabled}></button>}
           </div>
         </li>
       ))}

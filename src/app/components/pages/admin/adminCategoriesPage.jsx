@@ -113,11 +113,15 @@ const AdminCategoriesPage = () => {
   };
 
   const onClickDelete = async (categoryId) => {
-    if (window.confirm("Удалить категорию?") == true) {
-      setIsLoading(true);
-      const data = await categoriesService.delete(categoryId);
+    try {
+      if (window.confirm("Удалить категорию?") == true) {
+        setIsLoading(true);
+        const data = await categoriesService.delete(categoryId);
+        setIsLoading(false);
+        dispatch(categoriesDeleted(categoryId));
+      }
+    } catch (error) {
       setIsLoading(false);
-      dispatch(categoriesDeleted(categoryId));
     }
   };
 
@@ -129,26 +133,11 @@ const AdminCategoriesPage = () => {
           "Загрузка..."
         ) : (
           <>
-            <button
-              className="admin-add-btn"
-              onClick={createCategory}
-              disabled={isLoading}
-            >
+            <button className="admin-add-btn" onClick={createCategory} disabled={isLoading}>
               Добавить
             </button>
-            <ListItems
-              items={categories}
-              onClickEdit={onClickEdit}
-              onClickDelete={onClickDelete}
-              btnDisabled={isLoading}
-            />
-            <Modal
-              isOpen={isModalEditActive}
-              setIsOpen={setIsModalEditActive}
-              title={
-                editMode ? "Редактирование категории" : "Добавление категории"
-              }
-            >
+            <ListItems items={categories} onClickEdit={onClickEdit} onClickDelete={onClickDelete} btnDisabled={isLoading} />
+            <Modal isOpen={isModalEditActive} setIsOpen={setIsModalEditActive} title={editMode ? "Редактирование категории" : "Добавление категории"}>
               <FormCreator
                 formState={formState}
                 handleChange={handleChange}

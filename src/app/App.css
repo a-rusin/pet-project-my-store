@@ -276,14 +276,33 @@ body {
   flex: 0 1 100%;
 }
 
+.swiper-loading {
+  background-color: #fff;
+  padding: 20rem 15rem;
+  border-radius: 10rem;
+  margin-bottom: 10rem;
+  box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.16);
+  height: 297rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
 .swiper-slide {
-  min-height: 300rem;
   background-color: #5802a3;
   color: #fff;
   border-radius: 10rem;
-  padding: 10rem;
+  overflow: hidden;
   box-sizing: border-box;
   box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.16);
+  height: 297rem;
+}
+
+.swiper-slide img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .swiper-button-prev:after,
@@ -920,7 +939,6 @@ body {
 .form-textarea {
   resize: none;
   height: 100rem;
-
 }
 
 .form-input-label {
@@ -1157,7 +1175,7 @@ body {
 .comment-item-image {
   width: 50rem;
   border-radius: 50rem;
-  border: 3rem solid #5802a3
+  border: 3rem solid #5802a3;
 }
 
 .comment-item-date {
@@ -1175,10 +1193,10 @@ body {
 .comment-item-title {
   font-weight: 700;
   margin-bottom: 15rem;
-
 }
 
-.comment-item-message {}
+.comment-item-message {
+}
 
 .comment-item {
   padding: 20rem 0 40rem;
@@ -1322,7 +1340,6 @@ body {
   border-bottom: 1rem solid #9c9c9c;
 }
 
-
 .list-item-btns {
   display: flex;
   gap: 10rem;
@@ -1344,7 +1361,7 @@ body {
 
 .list-item-btn-edit {
   background-color: #0076d6;
-  background-image: url('./assets/imgs/edit.svg');
+  background-image: url("./assets/imgs/edit.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 20rem;
@@ -1353,7 +1370,7 @@ body {
 
 .list-item-btn-delete {
   background-color: #c40000;
-  background-image: url('./assets/imgs/delete-light.svg');
+  background-image: url("./assets/imgs/delete-light.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 20rem;
@@ -1362,7 +1379,7 @@ body {
 
 .list-item-btn-open {
   background-color: #25ac37;
-  background-image: url('./assets/imgs/eye.svg');
+  background-image: url("./assets/imgs/eye.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 20rem;
@@ -1417,12 +1434,11 @@ body {
   margin: 0 auto;
 }
 
-
 .modal-content {
   padding: 20rem;
   border-radius: 12rem;
   background-color: #fff;
-  
+
   transform: scale(0.5);
   transition: 0.2s;
 }
@@ -1465,7 +1481,7 @@ body {
 .admin-add-btn::before {
   content: "";
   position: relative;
-  background-image: url('./assets/imgs/plus-light.svg');
+  background-image: url("./assets/imgs/plus-light.svg");
   background-repeat: no-repeat;
   background-position: center left;
   background-size: 10rem;
@@ -1484,3 +1500,50 @@ body {
   margin-bottom: 10rem;
 }
 
+.admin-slider-item-image {
+  width: 100%;
+}
+
+.admin-slider-file {
+  display: none;
+}
+
+.custom-admin-slider-file {
+  font-size: 14rem;
+  background-color: #0076d6;
+  border: 1rem solid #005eaa;
+  color: #fff;
+  border-radius: 5rem;
+  min-width: 400rem;
+  min-height: 38rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10rem;
+  margin-bottom: 20rem;
+  margin-right: 20rem;
+  cursor: pointer;
+}
+
+.custom-admin-slider-file::before {
+  content: "";
+  position: relative;
+  background-image: url("./assets/imgs/document.svg");
+  background-repeat: no-repeat;
+  background-position: center left;
+  background-size: 15rem;
+  width: 15rem;
+  height: 15rem;
+}
+
+.admin-slider-form {
+  display: flex;
+  align-items: center;
+}
+
+.admin-slder-message {
+  font-size: 14rem;
+  color: #c40000;
+  font-weight: 600;
+  margin-bottom: 30rem;
+}

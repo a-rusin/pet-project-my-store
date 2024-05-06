@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const Modal = ({ isOpen, setIsOpen, children, title }) => {
+const Modal = ({ isOpen, setIsOpen, children, title, modalWidth }) => {
   useEffect(() => {
     if (isOpen) {
       document.body.classList.add("blocked");
@@ -12,7 +12,7 @@ const Modal = ({ isOpen, setIsOpen, children, title }) => {
   return (
     <div className={isOpen ? "modal active" : "modal"}>
       <div className="modal-bg-paranja" onClick={() => setIsOpen(false)}></div>
-      <div className="modal-wrapper">
+      <div className="modal-wrapper" style={{ width: modalWidth ? modalWidth : null }}>
         <div className="modal-content" onClick={(e) => e.stopPropagation()}>
           <h2 className="modal-title">{title}</h2>
           {children}
