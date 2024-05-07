@@ -20,12 +20,21 @@ const productsSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+    productUpdated: (state, action) => {
+      const index = state.entities.findIndex((item) => item._id === action.payload._id);
+      state.entities[index] = action.payload;
+    },
+    productDeleted: (state, action) => {
+      state.entities = state.entities.filter((item) => item._id !== action.payload);
+    },
+    productAddNewItem: (state, action) => {
+      state.entities.push(action.payload);
+    },
   },
 });
 
 const { reducer: productsReducer } = productsSlice;
-const { productsRequested, productsRecived, productsRequstFailed } =
-  productsSlice.actions;
+export const { productsRequested, productsRecived, productsRequstFailed, productUpdated, productDeleted, productAddNewItem } = productsSlice.actions;
 
 export const loadProductsList = (path) => async (dispatch) => {
   dispatch(productsRequested());
@@ -38,7 +47,6 @@ export const loadProductsList = (path) => async (dispatch) => {
 };
 
 export const getProductsList = () => (state) => state.products.entities;
-export const getProductsLoadingStatus = () => (state) =>
-  state.products.isLoading;
+export const getProductsLoadingStatus = () => (state) => state.products.isLoading;
 
 export default productsReducer;

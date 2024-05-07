@@ -1,6 +1,4 @@
 const ListItems = ({ items, onClickEdit, onClickDelete, onClickOpen, btnDisabled }) => {
-  const name = (params) => {};
-
   return (
     <ul className="list-items">
       {items.map((item, index) => (

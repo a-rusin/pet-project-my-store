@@ -1,13 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getProductsList,
-  getProductsLoadingStatus,
-  loadProductsList,
-} from "../../../store/products";
+import { getProductsList, getProductsLoadingStatus, loadProductsList, productAddNewItem, productDeleted, productUpdated } from "../../../store/products";
 import ListItems from "../../common/listItems/listItems";
 import { useEffect, useState } from "react";
 import Modal from "../../common/modal";
 import FormCreator from "../../common/form/formCreator";
+import productsService from "../../../services/products.service";
+import { getCategoriesList, getCategoriesLoadingStatus, loadCategoriesList } from "../../../store/categories";
 
 const formConfig = [
   {
@@ -16,7 +14,7 @@ const formConfig = [
     name: "name",
     value: "",
     placeholder: "Название..",
-    type: "text",
+    type: "input-text",
     isRequired: true,
   },
   {
@@ -25,7 +23,7 @@ const formConfig = [
     name: "description",
     value: "",
     placeholder: "Описание..",
-    type: "text",
+    type: "input-text",
     isRequired: true,
   },
   {
@@ -34,7 +32,8 @@ const formConfig = [
     name: "category",
     value: "",
     placeholder: "Категория..",
-    type: "text",
+    type: "select",
+    options: [],
     isRequired: true,
   },
   {
@@ -43,7 +42,7 @@ const formConfig = [
     name: "rage",
     value: "",
     placeholder: "Рейтинг..",
-    type: "text",
+    type: "input-text",
     isRequired: true,
   },
   {
@@ -52,7 +51,7 @@ const formConfig = [
     name: "reviews",
     value: "",
     placeholder: "Отзывы..",
-    type: "text",
+    type: "input-text",
     isRequired: true,
   },
   {
@@ -61,16 +60,7 @@ const formConfig = [
     name: "price",
     value: "",
     placeholder: "Цена..",
-    type: "text",
-    isRequired: true,
-  },
-  {
-    id: 6,
-    label: "Цена:",
-    name: "price",
-    value: "",
-    placeholder: "Цена..",
-    type: "text",
+    type: "input-text",
     isRequired: true,
   },
   {
@@ -79,7 +69,7 @@ const formConfig = [
     name: "stokes",
     value: "",
     placeholder: "Цена по акции..",
-    type: "text",
+    type: "input-text",
     isRequired: true,
   },
   {
@@ -88,7 +78,7 @@ const formConfig = [
     name: "bonus",
     value: "",
     placeholder: "Бонус за покупку..",
-    type: "text",
+    type: "input-text",
     isRequired: true,
   },
   {
@@ -97,7 +87,7 @@ const formConfig = [
     name: "availability",
     value: "",
     placeholder: "Наличие..",
-    type: "text",
+    type: "input-text",
     isRequired: true,
   },
   {
@@ -106,7 +96,7 @@ const formConfig = [
     name: "image",
     value: "",
     placeholder: "Ссылку на картинку..",
-    type: "text",
+    type: "input-text",
     isRequired: true,
   },
 ];
@@ -114,20 +104,57 @@ const formConfig = [
 const AdminProductsPage = () => {
   const [isModalEditActive, setIsModalEditActive] = useState(false);
   const [formState, setFormState] = useState(formConfig);
+  const [editMode, setEditMode] = useState(true);
+  const [currentProductId, setCurrentProductId] = useState(null);
+  const [isLoadingRequest, setIsLoadingRequest] = useState(false);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(loadProductsList());
+    dispatch(loadCategoriesList());
   }, []);
 
   const products = useSelector(getProductsList());
-  const isLoading = useSelector(getProductsLoadingStatus());
+  const isLoadingProduct = useSelector(getProductsLoadingStatus());
+
+  const categories = useSelector(getCategoriesList());
+  const isCategoriesLoading = useSelector(getCategoriesLoadingStatus());
+
+  useEffect(() => {
+    setFormState((prevState) => {
+      return prevState.map((item) => {
+        if (item.name === "category") {
+          if (!isCategoriesLoading) {
+            item.options = categories;
+            return item;
+          }
+        }
+        return item;
+      });
+    });
+  }, [categories]);
+
+  const resetFormValue = () => {
+    setFormState((prevState) => {
+      return prevState.map((item) => {
+        item.value = "";
+        return item;
+      });
+    });
+  };
 
   const onClickEdit = (productId) => {
-    console.log(productId);
+    setEditMode(true);
+    setCurrentProductId(productId);
     const productItem = products.find((item) => item._id === productId);
     setIsModalEditActive(true);
+    setFormState((prevState) => {
+      return prevState.map((item) => {
+        item.value = productItem[item.name];
+        return item;
+      });
+    });
   };
 
   const handleChange = (name, value) => {
@@ -141,28 +168,64 @@ const AdminProductsPage = () => {
     });
   };
 
-  const submitForm = async (e) => {};
+  const submitForm = async (e) => {
+    try {
+      setIsLoadingRequest(true);
+      e.preventDefault();
+      const payload = formState.reduce((acc, input) => {
+        acc[input.name] = input.value;
+        return acc;
+      }, {});
+
+      if (editMode) {
+        const data = await productsService.updateProduct(currentProductId, payload);
+        dispatch(productUpdated(data));
+      } else {
+        const data = await productsService.addNewProduct(payload);
+        dispatch(productAddNewItem(data));
+      }
+
+      setIsLoadingRequest(false);
+      setIsModalEditActive(false);
+    } catch (error) {}
+  };
+
+  const createProduct = () => {
+    resetFormValue();
+    setIsModalEditActive(true);
+    setEditMode(false);
+  };
+
+  const onClickDelete = async (productId) => {
+    try {
+      if (window.confirm("Удалить товар?") == true) {
+        setIsLoadingRequest(true);
+        const data = await productsService.deleteProduct(productId);
+        setIsLoadingRequest(false);
+        dispatch(productDeleted(productId));
+      }
+    } catch (error) {}
+  };
 
   return (
     <>
       <h1 className="admin-route-title">Все товары</h1>
       <div className="admin-main-content-list">
-        {isLoading ? (
+        {isLoadingProduct ? (
           "Загрузка..."
         ) : (
           <>
-            <ListItems items={products} onClickEdit={onClickEdit} />
-            <Modal
-              isOpen={isModalEditActive}
-              setIsOpen={setIsModalEditActive}
-              title="Редактирование товара"
-            >
+            <button className="admin-add-btn" onClick={createProduct} disabled={isLoadingRequest}>
+              Добавить
+            </button>
+            <ListItems items={products} onClickEdit={onClickEdit} btnDisabled={isLoadingRequest} onClickDelete={onClickDelete} />
+            <Modal isOpen={isModalEditActive} setIsOpen={setIsModalEditActive} title={editMode ? "Редактирование товара" : "Добавление товара"}>
               <FormCreator
                 formState={formState}
                 handleChange={handleChange}
                 submitForm={submitForm}
-                btnText="Обновить"
-                btnDisabled={false}
+                btnText={editMode ? "Обновить" : "Добавить"}
+                btnDisabled={isLoadingRequest}
                 error={null}
               />
             </Modal>

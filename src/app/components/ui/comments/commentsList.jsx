@@ -3,12 +3,7 @@ import FormCreator from "../../common/form/formCreator";
 import { useDispatch, useSelector } from "react-redux";
 import localStorageService from "../../../services/localStorage.service";
 import localStorageConstants from "../../../constants/localStorage.constants";
-import {
-  addComment,
-  getCommentLoadingStatus,
-  getComments,
-  getCommentsEntities,
-} from "../../../store/comments";
+import { addComment, getCommentLoadingStatus, getComments, getCommentsEntities } from "../../../store/comments";
 import Loader from "../../common/loader";
 import Comment from "./comment";
 import { getCurrentUser } from "../../../store/auth";
@@ -20,7 +15,7 @@ const formConfig = [
     name: "advantages",
     value: "",
     placeholder: "Достоинства...",
-    type: "text",
+    type: "input-text",
     isRequired: true,
   },
   {
@@ -29,7 +24,7 @@ const formConfig = [
     name: "disadvantages",
     value: "",
     placeholder: "Недостатки...",
-    type: "text",
+    type: "input-text",
     isRequired: true,
   },
   {
@@ -86,8 +81,7 @@ const CommentsList = ({ productId }) => {
       userId: localStorageService.get(localStorageConstants.userId),
       commentText: formState.find((item) => item.name === "commentText").value,
       advantages: formState.find((item) => item.name === "advantages").value,
-      disadvantages: formState.find((item) => item.name === "disadvantages")
-        .value,
+      disadvantages: formState.find((item) => item.name === "disadvantages").value,
     };
 
     dispatch(addComment(payload));
@@ -110,15 +104,10 @@ const CommentsList = ({ productId }) => {
               error={errors}
             />
           ) : (
-            <p className="comment-auth-message">
-              Добавление комментариев доступно только авторизованым
-              пользователям!
-            </p>
+            <p className="comment-auth-message">Добавление комментариев доступно только авторизованым пользователям!</p>
           )}
 
-          <h1 className="comments-title">
-            Комментарии других покупателей ({commentsList.length}):
-          </h1>
+          <h1 className="comments-title">Комментарии других покупателей ({commentsList.length}):</h1>
           <ul className="comments-list">
             {commentsList.map((comment) => (
               <Comment key={comment._id} comment={comment} />

@@ -13,16 +13,11 @@ const categoriesService = {
     return data;
   },
   delete: async (categoryId) => {
-    const { data } = await httpAuthService.delete(
-      categoriesEndPoint + categoryId
-    );
+    const { data } = await httpAuthService.delete(categoriesEndPoint + categoryId);
     return data;
   },
   update: async (categoryId, payload) => {
-    const { data } = await httpAuthService.patch(
-      categoriesEndPoint + categoryId,
-      payload
-    );
+    const { data } = await httpAuthService.patch(categoriesEndPoint + categoryId, payload);
     return data;
   },
 };

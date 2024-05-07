@@ -98,5 +98,3 @@ const AdminSliderPage = () => {
 };
 
 export default AdminSliderPage;
-
-// 1430 * 290

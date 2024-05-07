@@ -10,7 +10,7 @@ const formConfig = [
     name: "email",
     value: "",
     placeholder: "ivan.ivanov@mail.ru",
-    type: "text",
+    type: "input-text",
     isRequired: true,
   },
   {
@@ -19,7 +19,7 @@ const formConfig = [
     name: "password",
     value: "",
     placeholder: "12345678",
-    type: "text",
+    type: "input-text",
     isRequired: true,
   },
 ];
@@ -68,19 +68,9 @@ const LoginForm = ({ handleClickChangeLoginState, loginFormState }) => {
 
   return (
     <>
-      <FormCreator
-        formState={formState}
-        handleChange={handleChange}
-        submitForm={submitForm}
-        btnText="Войти"
-        btnDisabled={isBtnDisabled}
-        error={errors}
-      />
+      <FormCreator formState={formState} handleChange={handleChange} submitForm={submitForm} btnText="Войти" btnDisabled={isBtnDisabled} error={errors} />
       <p className="form-text">
-        Нету аккаунта?{" "}
-        <span onClick={() => handleClickChangeLoginState(false)}>
-          Регистрация
-        </span>
+        Нету аккаунта? <span onClick={() => handleClickChangeLoginState(false)}>Регистрация</span>
       </p>
     </>
   );

@@ -9,7 +9,7 @@ const formConfig = [
     name: "email",
     value: "",
     placeholder: "ivan.ivanov@mail.ru",
-    type: "text",
+    type: "input-text",
     isRequired: true,
   },
   {
@@ -18,7 +18,7 @@ const formConfig = [
     name: "name",
     value: "",
     placeholder: "Иван",
-    type: "text",
+    type: "input-text",
     isRequired: true,
   },
   {
@@ -87,18 +87,10 @@ const FeedbackPage = () => {
       <div className="feedback-wrapper">
         {isSuccess ? (
           <p className="feedback-success-message">
-            Ваше сообщение успешно отправлено! Ожидайте ответа на электронную
-            почту: <strong>{formState[0].value}</strong>
+            Ваше сообщение успешно отправлено! Ожидайте ответа на электронную почту: <strong>{formState[0].value}</strong>
           </p>
         ) : (
-          <FormCreator
-            formState={formState}
-            handleChange={handleChange}
-            submitForm={submitForm}
-            btnText="Отправить"
-            btnDisabled={isLoading}
-            error={null}
-          />
+          <FormCreator formState={formState} handleChange={handleChange} submitForm={submitForm} btnText="Отправить" btnDisabled={isLoading} error={null} />
         )}
       </div>
     </>

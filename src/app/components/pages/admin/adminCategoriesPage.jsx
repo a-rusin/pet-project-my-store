@@ -21,7 +21,7 @@ const formConfig = [
     name: "name",
     value: "",
     placeholder: "Название категории..",
-    type: "text",
+    type: "input-text",
     isRequired: true,
   },
   {
@@ -30,7 +30,7 @@ const formConfig = [
     name: "path",
     value: "",
     placeholder: "Путь (URL):",
-    type: "text",
+    type: "input-text",
     isRequired: true,
   },
 ];
