@@ -93,9 +93,9 @@ export const incrementCountProductInBasket = (productId) => (dispatch, getState)
 };
 
 export const dicrementCountProductInBasket = (productId) => (dispatch, getState) => {
-  const productItem = basket.entities.find((product) => product.productId === productId);
-
   const { basket } = getState();
+
+  const productItem = basket.entities.find((product) => product.productId === productId);
 
   if (productItem.count === 1) {
     dispatch(bastetDeleteProduct(productId));
@@ -103,12 +103,15 @@ export const dicrementCountProductInBasket = (productId) => (dispatch, getState)
     dispatch(basketDecrProductCount(productId));
   }
 
-  const { basketNew } = getState();
+  const { basket: basketNew } = getState();
   updateBasketLocalStorage(basketNew.entities);
 };
 
-export const clearBasket = () => (dispatch) => {
+export const clearBasket = () => (dispatch, getState) => {
   dispatch(basketClearProduct());
+
+  const { basket } = getState();
+  updateBasketLocalStorage(basket.entities);
 };
 
 export const getProductsInfo = (productArray) => async (dispatch) => {

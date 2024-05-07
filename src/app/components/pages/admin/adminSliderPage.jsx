@@ -41,7 +41,6 @@ const AdminSliderPage = () => {
   };
 
   const onClickOpen = (id) => {
-    console.log(id);
     setIsModalEditActive(true);
     const urlImage = slider.find((item) => item._id === id);
     setSliderItemImage(`http://localhost:8080/images/${urlImage.image}`);

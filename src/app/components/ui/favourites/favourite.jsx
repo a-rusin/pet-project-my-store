@@ -1,6 +1,14 @@
+import { useDispatch } from "react-redux";
 import formatNumber from "../../../utils/formatNumber";
+import { addProductToFavourite } from "../../../store/favourites";
 
 const Favourite = ({ product }) => {
+  const dispatch = useDispatch();
+
+  const handleClick = (product) => {
+    dispatch(addProductToFavourite(product));
+  };
+
   return (
     <li className="favourites-item">
       <div className="favourites-left-part">
@@ -11,7 +19,7 @@ const Favourite = ({ product }) => {
       </div>
       <div className="favourites-right-part">
         <p className="favourites-price">{formatNumber(product.price.toString())} ₽</p>
-        <button className="favourites-item-btn">
+        <button className="favourites-item-btn" onClick={() => handleClick(product)}>
           <svg
             width="800px"
             height="800px"

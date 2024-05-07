@@ -15,7 +15,7 @@ const favouritesSlice = createSlice({
       state.entities.push(action.payload);
     },
     favouritesRemoveItem: (state, action) => {
-      state.entities = state.entities.filter((f) => f !== action.payload);
+      state.entities = state.entities.filter((f) => f._id !== action.payload._id);
     },
     favouritesRequested: (state) => {
       state.isLoading = true;
@@ -46,13 +46,22 @@ export const getProductsInfo = (productArray) => async (dispatch) => {
 };
 
 export const addProductToFavourite = (product) => (dispatch, getState) => {
-  dispatch(favouritesAddItem(product));
-
   const { favourites } = getState();
 
-  updateFavouritesLocalStorage(favourites.entities);
+  const isExist = favourites.entities.find((f) => f._id === product._id);
+
+  if (isExist) {
+    dispatch(favouritesRemoveItem(product));
+  } else {
+    dispatch(favouritesAddItem(product));
+  }
+
+  const { favourites: newFavourites } = getState();
+
+  updateFavouritesLocalStorage(newFavourites.entities);
 };
 
 export const getFavouritesProductsList = () => (state) => state.favourites.entities;
+export const getFavouritesProductsListLoadingStatus = () => (state) => state.favourites.isLoading;
 
 export default favouritesReducer;
