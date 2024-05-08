@@ -1,4 +1,4 @@
-const FormCreator = ({ formState, submitForm, handleChange, btnText, btnDisabled, error }) => {
+const FormCreator = ({ formState, submitForm, handleChange, btnText, btnDisabled, error, isSubmitBtnEnabled }) => {
   return (
     <form className="form-content" onSubmit={submitForm}>
       {formState.map((input) => (
@@ -48,12 +48,17 @@ const FormCreator = ({ formState, submitForm, handleChange, btnText, btnDisabled
       ))}
 
       <p className="form-error-message">{error}</p>
-
-      <button type="submit" className="form-input-btn" disabled={btnDisabled}>
-        {btnDisabled ? "Ждите..." : btnText}
-      </button>
+      {isSubmitBtnEnabled && (
+        <button type="submit" className="form-input-btn" disabled={btnDisabled}>
+          {btnDisabled ? "Ждите..." : btnText}
+        </button>
+      )}
     </form>
   );
+};
+
+FormCreator.defaultProps = {
+  isSubmitBtnEnabled: true,
 };
 
 export default FormCreator;

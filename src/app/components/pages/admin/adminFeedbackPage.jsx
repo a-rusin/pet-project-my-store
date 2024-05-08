@@ -5,7 +5,7 @@ import Modal from "../../common/modal";
 import FeedbackItem from "../../common/feedbackItem";
 
 const AdminFeedbackPage = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingPage, setIsLoadingPage] = useState(true);
   const [feedbacks, setFeeedbacks] = useState([]);
   const [feedbackItem, setFeedbackItem] = useState();
   const [isModalEditActive, setIsModalEditActive] = useState(false);
@@ -14,9 +14,9 @@ const AdminFeedbackPage = () => {
     try {
       const data = await feedbackService.getAll();
       setFeeedbacks(data);
-      setIsLoading(false);
+      setIsLoadingPage(false);
     } catch (error) {
-      setIsLoading(false);
+      setIsLoadingPage(false);
     }
   };
 
@@ -33,16 +33,12 @@ const AdminFeedbackPage = () => {
     <>
       <h1 className="admin-route-title">Все сообщения</h1>
       <div className="admin-main-content-list">
-        {isLoading ? (
+        {isLoadingPage ? (
           "Загрузка..."
         ) : (
           <>
             <ListItems items={feedbacks} onClickOpen={onClickOpen} />
-            <Modal
-              isOpen={isModalEditActive}
-              setIsOpen={setIsModalEditActive}
-              title="Сообщение"
-            >
+            <Modal isOpen={isModalEditActive} setIsOpen={setIsModalEditActive} title="Сообщение">
               <FeedbackItem feedback={feedbackItem} />
             </Modal>
           </>

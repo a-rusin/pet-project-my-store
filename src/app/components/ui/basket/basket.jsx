@@ -7,6 +7,7 @@ import formatNumber from "../../../utils/formatNumber";
 import { useEffect } from "react";
 import localStorageService from "../../../services/localStorage.service";
 import localStorageConstants from "../../../constants/localStorage.constants";
+import { useHistory } from "react-router-dom";
 
 const Basket = () => {
   const isBasketOpen = useSelector(getBasketStatus());
@@ -15,6 +16,7 @@ const Basket = () => {
   const totalPrice = basketEntities.reduce((acc, item) => item.productInfo.price * item.count + acc, 0);
 
   const dispatch = useDispatch();
+  const histore = useHistory();
 
   useEffect(() => {
     const basketLS = localStorageService.get(localStorageConstants.basket) || [];
@@ -33,6 +35,11 @@ const Basket = () => {
     dispatch(clearBasket());
   };
 
+  const handleClickOrder = () => {
+    histore.push("/order");
+    handleClickParanja();
+  };
+
   return (
     <div className={isBasketOpen ? "basket" : "basket hide"}>
       <div className="basket-paranja" onClick={handleClickParanja}></div>
@@ -46,7 +53,9 @@ const Basket = () => {
             <strong>Итого</strong>: {formatNumber(totalPrice.toString())} ₽
           </div>
           <div className="bakset-btn-group">
-            <button className="basket-btn basket-btn-buy">Заказать</button>
+            <button className="basket-btn basket-btn-buy" onClick={handleClickOrder}>
+              Заказать
+            </button>
             <button className="basket-btn basket-btn-clear" onClick={handleClickClearBasket}>
               Очистить
             </button>

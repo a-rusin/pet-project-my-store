@@ -5,7 +5,6 @@ import Product from "./product";
 import ProductsSearch from "./productsSearch";
 import Favourites from "./favourites";
 import News from "./news";
-import Stocks from "./stocks";
 import Contacts from "./contacts";
 import Feedback from "./feedback";
 import About from "./about";
@@ -19,6 +18,7 @@ import localStorageService from "../services/localStorage.service";
 import localStorageConstants from "../constants/localStorage.constants";
 import { getProductsInfo } from "../store/favourites";
 import { getUser, stopLoading } from "../store/auth";
+import Order from "./order";
 
 const UserLayout = () => {
   const dispatch = useDispatch();
@@ -26,8 +26,7 @@ const UserLayout = () => {
   useEffect(() => {
     dispatch(loadCategoriesList());
 
-    const favouritesLS =
-      localStorageService.get(localStorageConstants.favourites) || [];
+    const favouritesLS = localStorageService.get(localStorageConstants.favourites) || [];
 
     if (favouritesLS !== 0) {
       dispatch(getProductsInfo(favouritesLS));
@@ -51,15 +50,11 @@ const UserLayout = () => {
             <Navbar />
             <Route path="/" exact component={Products} />
             <Route path="/products/item/:productId" exact component={Product} />
-            <Route
-              path="/products/:productsCategory?"
-              exact
-              component={Products}
-            />
+            <Route path="/products/:productsCategory?" exact component={Products} />
             <Route path="/search" exact component={ProductsSearch} />
+            <Route path="/order" exact component={Order} />
             <Route path="/favourites" exact component={Favourites} />
             <Route path="/news" exact component={News} />
-            <Route path="/stocks" exact component={Stocks} />
             <Route path="/contacts" exact component={Contacts} />
             <Route path="/feedback" exact component={Feedback} />
             <Route path="/about" exact component={About} />

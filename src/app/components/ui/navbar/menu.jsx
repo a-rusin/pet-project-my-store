@@ -15,11 +15,6 @@ const Menu = () => {
           </Link>
         </li>
         <li className="nav-item">
-          <Link to="/stocks" className="nav-item-url">
-            Акции
-          </Link>
-        </li>
-        <li className="nav-item">
           <Link to="/contacts" className="nav-item-url">
             Контакты
           </Link>

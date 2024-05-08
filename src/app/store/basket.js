@@ -136,4 +136,7 @@ export const { reducer: basketReducer } = basketSlice;
 export const getBasketStatus = () => (state) => state.basket.isOpen;
 
 export const getBasketEntities = () => (state) => state.basket.entities;
+
+export const getBasketLoadingStatus = () => (state) => state.basket.isLoading;
+
 export default basketReducer;

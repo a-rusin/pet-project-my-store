@@ -12,7 +12,7 @@ const Modal = ({ isOpen, setIsOpen, children, title, modalWidth }) => {
   return (
     <div className={isOpen ? "modal active" : "modal"}>
       <div className="modal-bg-paranja" onClick={() => setIsOpen(false)}></div>
-      <div className="modal-wrapper" style={{ width: modalWidth ? modalWidth : null }}>
+      <div className="modal-wrapper" style={{ width: modalWidth ? modalWidth + "rem" : null }}>
         <div className="modal-content" onClick={(e) => e.stopPropagation()}>
           <h2 className="modal-title">{title}</h2>
           {children}

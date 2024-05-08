@@ -9,17 +9,17 @@ const productsService = {
     return data;
   },
   getProductsByArray: async (productsArray) => {
-    const { data } = await httpService.post(productsEndPoint + "/basket", {
+    const { data } = await httpService.post(productsEndPoint + "getByArray", {
       products: productsArray,
     });
     return data;
   },
   getProductById: async (productId) => {
-    const { data } = await httpService.get(productsEndPoint + "/item/" + productId);
+    const { data } = await httpService.get(productsEndPoint + "item/" + productId);
     return data;
   },
   getProductsBySearch: async (searchText) => {
-    const { data } = await httpService.post(productsEndPoint + "/search", {
+    const { data } = await httpService.post(productsEndPoint + "search", {
       searchText,
     });
     return data;

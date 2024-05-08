@@ -1,5 +1,7 @@
+import AdminOrdersPage from "../../components/pages/admin/adminOrdersPage";
+
 const AdminOrders = () => {
-  return <h1>AdminOrders</h1>;
+  return <AdminOrdersPage />;
 };
 
 export default AdminOrders;

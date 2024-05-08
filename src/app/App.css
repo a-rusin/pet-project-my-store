@@ -1400,7 +1400,7 @@ body {
 }
 
 .feedback-title {
-  font-weight: 28rem;
+  font-size: 28rem;
 }
 
 .feedback-wrapper {
@@ -1546,4 +1546,83 @@ body {
   color: #c40000;
   font-weight: 600;
   margin-bottom: 30rem;
+}
+
+.order-title {
+  font-size: 28rem;
+  margin-bottom: 20rem;
+}
+
+.order-wrapper {
+  background-color: #fff;
+  padding: 20rem 15rem;
+  border-radius: 10rem;
+  margin-bottom: 20rem;
+  box-shadow: 0 1rem 2rem 0 rgba(0, 0, 0, 0.16);
+}
+
+.order-btn-confirm {
+  min-width: 302rem;
+  min-height: 64rem;
+  color: #fff;
+  font-weight: 700;
+  background-color: #5802a3;
+  border-radius: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.order-btn-confirm:disabled {
+  background-color: #9c9c9c;
+  border: 1rem solid #777;
+  cursor: not-allowed;
+}
+
+.order-label {
+  margin-bottom: 20rem;
+  font-size: 18rem;
+  font-weight: 500;
+  display: inline-block;
+  padding: 5rem;
+  border-radius: 5rem;
+}
+
+.order-total-price {
+  font-size: 20rem;
+  margin: 20rem 0;
+}
+
+.order-table {
+  width: 100%;
+  border: 1rem solid #777;
+  border-collapse: collapse;
+  margin-top: 10rem;
+}
+
+.order-table thead th {
+  font-weight: bold;
+  text-align: left;
+  border: none;
+  padding: 5rem;
+  background: #d8d8d8;
+  border-left: 1rem solid #777;
+  border-right: 1rem solid #777;
+}
+
+.order-table th {
+  font-weight: bold;
+  padding: 5rem;
+  background: #efefef;
+  border: 1rem solid #777;
+}
+
+.order-table td {
+  border: 1rem solid #777;
+  padding: 5rem;
+}
+
+.order-table-url:hover {
+  text-decoration: underline;
 }
