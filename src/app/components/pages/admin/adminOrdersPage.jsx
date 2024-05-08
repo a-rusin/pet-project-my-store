@@ -4,6 +4,7 @@ import ordersService from "../../../services/orders.service";
 import ListItems from "../../common/listItems/listItems";
 import Modal from "../../common/modal";
 import OrderItem from "../../common/orderItem";
+import Loader from "../../common/loader";
 
 const AdminOrdersPage = () => {
   const [orders, setOrders] = useState([]);
@@ -27,20 +28,10 @@ const AdminOrdersPage = () => {
     getOrders();
   }, []);
 
-  const onClickOpen = async (orderId) => {
-    try {
-      setIsModalEditActive(true);
-      setIsLoadingOrderItem(true);
-      const orderItem = orders.find((o) => o._id === orderId);
-      const payload = orderItem.products.map((p) => p.productId);
-      const data = await productsService.getProductsByArray(payload);
-      const currentOrderItem = {
-        ...orderItem,
-        products: orderItem.products.map((p) => ({ ...p, productInfo: data.find((d) => d._id === p.productId) })),
-      };
-      setCurrentOrderItem(currentOrderItem);
-      setIsLoadingOrderItem(false);
-    } catch (error) {}
+  const onClickOpen = (orderId) => {
+    setIsModalEditActive(true);
+    const orderItem = orders.find((o) => o._id === orderId);
+    setCurrentOrderItem(orderItem);
   };
 
   return (
@@ -53,7 +44,7 @@ const AdminOrdersPage = () => {
           <>
             <ListItems items={orders} onClickOpen={onClickOpen} btnDisabled={isLoadingOrderItem} />
             <Modal isOpen={isModalEditActive} setIsOpen={setIsModalEditActive} title="Заказ" modalWidth={1000}>
-              <OrderItem data={currentOrderItem} isLoading={isLoadingOrderItem} />
+              <OrderItem data={currentOrderItem} setIsLoadingOrderItem={setIsLoadingOrderItem} isLoadingOrderItem={isLoadingOrderItem} loader={Loader} />
             </Modal>
           </>
         )}

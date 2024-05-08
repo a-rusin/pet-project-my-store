@@ -19,12 +19,16 @@ import localStorageConstants from "../constants/localStorage.constants";
 import { getProductsInfo } from "../store/favourites";
 import { getUser, stopLoading } from "../store/auth";
 import Order from "./order";
+import { loadContacts } from "../store/contacts";
+import ProfileLayout from "./profileLayout";
 
 const UserLayout = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(loadCategoriesList());
+
+    dispatch(loadContacts());
 
     const favouritesLS = localStorageService.get(localStorageConstants.favourites) || [];
 
@@ -52,6 +56,7 @@ const UserLayout = () => {
             <Route path="/products/item/:productId" exact component={Product} />
             <Route path="/products/:productsCategory?" exact component={Products} />
             <Route path="/search" exact component={ProductsSearch} />
+            <Route path="/profile" component={ProfileLayout} />
             <Route path="/order" exact component={Order} />
             <Route path="/favourites" exact component={Favourites} />
             <Route path="/news" exact component={News} />

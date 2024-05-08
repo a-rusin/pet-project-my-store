@@ -5,6 +5,7 @@ import { getCurrentUser, getIsAuthLoading } from "../../../store/auth";
 import UserMenu from "./userMenu";
 import { useEffect, useState } from "react";
 import LoaderSpinner from "../../common/loaderSpinner";
+import { getFavouritesProductsList } from "../../../store/favourites";
 
 const CtrlPanel = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,8 @@ const CtrlPanel = () => {
   const currentUser = useSelector(getCurrentUser());
 
   const basketEntities = useSelector(getBasketEntities());
+
+  const favouritesEntities = useSelector(getFavouritesProductsList());
 
   const handleClickOpenBasket = () => {
     document.body.classList.add("blocked");
@@ -65,39 +68,24 @@ const CtrlPanel = () => {
           </div>
         </form>
         <div className="ctrl-panel-btn-groups">
-          <button
-            className="btn-ctrl-panel btn-ctrl-panel-fav"
-            onClick={() => handleClickRoute("/favourites")}
-          >
+          <button className="btn-ctrl-panel btn-ctrl-panel-fav" onClick={() => handleClickRoute("/favourites")}>
+            {favouritesEntities.length !== 0 && <span className="basket-product-count">{favouritesEntities.length}</span>}
             Избранное
           </button>
-          <button
-            className="btn-ctrl-panel btn-ctrl-panel-basket"
-            onClick={handleClickOpenBasket}
-          >
-            {basketEntities.length !== 0 && (
-              <span className="basket-product-count">
-                {basketEntities.length}
-              </span>
-            )}
+          <button className="btn-ctrl-panel btn-ctrl-panel-basket" onClick={handleClickOpenBasket}>
+            {basketEntities.length !== 0 && <span className="basket-product-count">{basketEntities.length}</span>}
             Корзина
           </button>
           {currentUser ? (
             <div className="user-panel">
-              <button
-                className="btn-ctrl-panel btn-ctrl-panel-user"
-                onClick={(e) => toggleUserMenu(e)}
-              >
+              <button className="btn-ctrl-panel btn-ctrl-panel-user" onClick={(e) => toggleUserMenu(e)}>
                 {currentUser.name}
               </button>
               <UserMenu isUserMenuOpen={isUserMenuOpen} />
             </div>
           ) : (
             <button
-              className={
-                "btn-ctrl-panel btn-ctrl-panel-login" +
-                (isAuthLoading ? "-process" : "")
-              }
+              className={"btn-ctrl-panel btn-ctrl-panel-login" + (isAuthLoading ? "-process" : "")}
               onClick={() => handleClickRoute("/login")}
               disabled={isAuthLoading}
             >

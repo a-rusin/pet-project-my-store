@@ -12,6 +12,10 @@ const ordersService = {
     const { data } = await httpAuthService.get(ordersEndPoint);
     return data;
   },
+  getUserOrders: async (userId) => {
+    const { data } = await httpService.get(ordersEndPoint + userId);
+    return data;
+  },
 };
 
 export default ordersService;

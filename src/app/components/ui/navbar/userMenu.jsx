@@ -13,19 +13,14 @@ const UserMenu = ({ isUserMenuOpen }) => {
   return (
     <ul className={isUserMenuOpen ? "user-menu" : "user-menu hide"}>
       <li>
-        <Link to="" className="user-menu-item">
+        <Link to="/profile" className="user-menu-item">
           Мой профиль
         </Link>
       </li>
 
       {isAdmin && (
         <li>
-          <Link
-            to="/admin"
-            className="user-menu-item"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Link to="/admin" className="user-menu-item" target="_blank" rel="noopener noreferrer">
             Админ панель
           </Link>
         </li>

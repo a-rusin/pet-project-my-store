@@ -83,8 +83,8 @@ const FeedbackPage = () => {
 
   return (
     <>
-      <h1 className="feedback-title">Форма обратной связи</h1>
-      <div className="feedback-wrapper">
+      <h1 className="page-title">Форма обратной связи</h1>
+      <div className="page-wrapper">
         {isSuccess ? (
           <p className="feedback-success-message">
             Ваше сообщение успешно отправлено! Ожидайте ответа на электронную почту: <strong>{formState[0].value}</strong>

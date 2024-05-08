@@ -1,6 +1,13 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getContacts, getContactsLoadingStatus } from "../../../store/contacts";
+import LoaderSpinner from "../../common/loaderSpinner";
+import Loader from "../../common/loader";
 
 const Menu = () => {
+  const isLoadingContacts = useSelector(getContactsLoadingStatus());
+  const contacts = useSelector(getContacts());
+
   return (
     <nav className="nav">
       <ul className="nav-list">
@@ -30,7 +37,7 @@ const Menu = () => {
           </Link>
         </li>
       </ul>
-      <div className="phone">8 (999) 999-99-99</div>
+      <div className="phone">{isLoadingContacts ? <Loader height={8} /> : contacts.phone}</div>
     </nav>
   );
 };

@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import formatNumber from "../../../utils/formatNumber";
 import { addProductToFavourite } from "../../../store/favourites";
+import { Link } from "react-router-dom";
 
 const Favourite = ({ product }) => {
   const dispatch = useDispatch();
@@ -12,9 +13,9 @@ const Favourite = ({ product }) => {
   return (
     <li className="favourites-item">
       <div className="favourites-left-part">
-        <a href="" className="favourites-item-url">
+        <Link to={`/products/item/${product._id}`} className="favourites-item-url">
           {product.name}
-        </a>
+        </Link>
         <p className="favourites-descr">{product.description}</p>
       </div>
       <div className="favourites-right-part">

@@ -1,10 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getIsAuthLoading,
-  getUser,
-  isRoleIncluded,
-  stopLoading,
-} from "../../store/auth";
+import { getIsAuthLoading, getUser, isRoleIncluded, stopLoading } from "../../store/auth";
 import { Redirect, Route } from "react-router-dom";
 import AdminNavBar from "../../components/ui/adminNavBar";
 import AdminCategories from "./adminCategories";
@@ -39,7 +34,7 @@ const AdminLayout = () => {
 
   if (isAuthLoading) {
     document.title = "Загрузка...";
-    return "Загрузка...";
+    return <div className="admin-loading-center">Загрузка...</div>;
   } else if (isAdmin) {
     document.title = "Админ панель v0.1 | MyStore.com";
     return (
@@ -53,11 +48,7 @@ const AdminLayout = () => {
           <Route path="/admin/slider" exact component={AdminSlider} />
           <Route path="/admin/orders" exact component={AdminOrders} />
           <Route path="/admin/feedback" exact component={AdminFeedback} />
-          <Route
-            path="/admin/settings"
-            exact
-            component={AdminSettingsGeneral}
-          />
+          <Route path="/admin/settings" exact component={AdminSettingsGeneral} />
         </div>
       </div>
     );

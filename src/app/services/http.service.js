@@ -7,7 +7,7 @@ const http = axios.create({
 
 http.interceptors.response.use(
   async function (response) {
-    const randomTime = Math.floor(Math.random() * (3000 - 1500 + 1) + 1500);
+    const randomTime = Math.floor(Math.random() * (2000 - 1000 + 1) + 1000);
 
     return new Promise((resolve) => {
       setTimeout(() => {

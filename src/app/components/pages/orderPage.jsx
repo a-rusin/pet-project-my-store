@@ -6,14 +6,16 @@ import { clearBasket, getBasketEntities } from "../../store/basket";
 import formatNumber from "../../utils/formatNumber";
 import productsService from "../../services/products.service";
 import ordersService from "../../services/orders.service";
+import { getCurrentUser, getIsAuthLoading } from "../../store/auth";
+import Loader from "../common/loader";
 
 const formConfig = [
   {
     id: 0,
-    label: "Имя:",
+    label: "ФИО:",
     name: "name",
     value: "",
-    placeholder: "Иван",
+    placeholder: "Иванов Иван Иванович",
     type: "input-text",
     isRequired: true,
   },
@@ -50,6 +52,9 @@ const OrderPage = () => {
   const [formState, setFormState] = useState(formConfig);
   const [isLoading, setIsLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  const currentUser = useSelector(getCurrentUser());
+  const isAuthLoading = useSelector(getIsAuthLoading());
 
   const dispatch = useDispatch();
 
@@ -94,6 +99,7 @@ const OrderPage = () => {
         ...formData,
         products,
         totalPrice,
+        authorId: currentUser ? currentUser._id : null,
       };
       const data = await ordersService.add(payload);
       if (data.status === "SUCCESS") {
@@ -113,30 +119,38 @@ const OrderPage = () => {
         <div className="order-wrapper">Ваш заказ успешно получен. В ближайшее время с вами свяжутся наши менеджера.</div>
       ) : (
         <>
-          <div className="order-wrapper">
-            <h2 className="order-label">1. Контакты получателя: </h2>
+          {isAuthLoading ? (
+            <div className="order-wrapper">
+              <Loader />
+            </div>
+          ) : (
+            <>
+              <div className="order-wrapper">
+                <h2 className="order-label">1. Контакты получателя: </h2>
 
-            <FormCreator
-              formState={formState}
-              handleChange={handleChange}
-              submitForm={null}
-              btnText="Войти"
-              btnDisabled={false}
-              error={null}
-              isSubmitBtnEnabled={false}
-            />
-          </div>
-          <div className="order-wrapper">
-            <h2 className="order-label">2. Список товаров: </h2>
-            <BasketList order={true} />
-            <p className="order-total-price">
-              <strong>Итого: </strong>
-              {formatNumber(totalPrice.toString())} ₽
-            </p>
-          </div>
-          <button className="order-btn-confirm" onClick={submitForm} disabled={isLoading}>
-            Подтвердить заказ
-          </button>
+                <FormCreator
+                  formState={formState}
+                  handleChange={handleChange}
+                  submitForm={null}
+                  btnText="Войти"
+                  btnDisabled={false}
+                  error={null}
+                  isSubmitBtnEnabled={false}
+                />
+              </div>
+              <div className="order-wrapper">
+                <h2 className="order-label">2. Список товаров: </h2>
+                <BasketList order={true} />
+                <p className="order-total-price">
+                  <strong>Итого: </strong>
+                  {formatNumber(totalPrice.toString())} ₽
+                </p>
+              </div>
+              <button className="order-btn-confirm" onClick={submitForm} disabled={isLoading}>
+                Подтвердить заказ
+              </button>
+            </>
+          )}
         </>
       )}
     </div>

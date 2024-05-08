@@ -9,7 +9,6 @@ const App = () => {
   return (
     <Switch>
       <Route path="/admin" component={AdminLayout} />
-
       <Route path="/" component={UserLayout} />
     </Switch>
   );

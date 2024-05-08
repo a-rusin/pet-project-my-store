@@ -29,9 +29,7 @@ const ProductsSearchPage = () => {
 
   return (
     <>
-      <h1 className="search-title">
-        Результат поиска по запросу: {searchText}
-      </h1>
+      <h1 className="search-title">Результат поиска по запросу: {searchText}</h1>
       <div className="search-wrapper">
         {loading ? (
           <div className="search-loading">

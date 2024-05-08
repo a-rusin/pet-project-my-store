@@ -1,5 +1,7 @@
+import AdminPageSettings from "../../components/pages/admin/adminSettingsPage";
+
 const AdminSettingsGeneral = () => {
-  return <h1>AdminSettingsGeneral</h1>;
+  return <AdminPageSettings />;
 };
 
 export default AdminSettingsGeneral;
