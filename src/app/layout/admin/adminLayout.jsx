@@ -13,6 +13,7 @@ import AdminSettingsGeneral from "./adminSettingsGenaral";
 import { useEffect, useState } from "react";
 import localStorageService from "../../services/localStorage.service";
 import localStorageConstants from "../../constants/localStorage.constants";
+import AdminNews from "./adminNews";
 
 const AdminLayout = () => {
   const dispatch = useDispatch();
@@ -47,6 +48,7 @@ const AdminLayout = () => {
           <Route path="/admin/users" exact component={AdminUsers} />
           <Route path="/admin/slider" exact component={AdminSlider} />
           <Route path="/admin/orders" exact component={AdminOrders} />
+          <Route path="/admin/news" exact component={AdminNews} />
           <Route path="/admin/feedback" exact component={AdminFeedback} />
           <Route path="/admin/settings" exact component={AdminSettingsGeneral} />
         </div>

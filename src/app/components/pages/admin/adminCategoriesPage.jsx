@@ -94,7 +94,9 @@ const AdminCategoriesPage = () => {
 
       setIsLoading(false);
       setIsModalEditActive(false);
-    } catch (error) {}
+    } catch (error) {
+      setIsLoading(false);
+    }
   };
 
   const resetFormValue = () => {

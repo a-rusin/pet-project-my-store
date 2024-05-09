@@ -21,6 +21,7 @@ import { getUser, stopLoading } from "../store/auth";
 import Order from "./order";
 import { loadContacts } from "../store/contacts";
 import ProfileLayout from "./profileLayout";
+import NewsPage from "../components/pages/newsPage";
 
 const UserLayout = () => {
   const dispatch = useDispatch();
@@ -59,7 +60,7 @@ const UserLayout = () => {
             <Route path="/profile" component={ProfileLayout} />
             <Route path="/order" exact component={Order} />
             <Route path="/favourites" exact component={Favourites} />
-            <Route path="/news" exact component={News} />
+            <Route path="/news" exact component={NewsPage} />
             <Route path="/contacts" exact component={Contacts} />
             <Route path="/feedback" exact component={Feedback} />
             <Route path="/about" exact component={About} />

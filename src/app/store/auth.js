@@ -87,6 +87,8 @@ export const getUser = (userId) => async (dispatch) => {
     dispatch(authSetUserSuccess(userInfo));
   } catch (error) {
     dispatch(authFailed(error.response.data.message));
+    localStorageService.remove(localStorageConstants.token);
+    localStorageService.remove(localStorageConstants.userId);
   }
 };
 

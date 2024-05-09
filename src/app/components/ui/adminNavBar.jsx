@@ -37,6 +37,11 @@ const AdminNavBar = () => {
             </Link>
           </li>
           <li>
+            <Link to="/admin/news" className="admin-navbar-item">
+              Новости
+            </Link>
+          </li>
+          <li>
             <Link to="/admin/feedback" className="admin-navbar-item">
               Обратная связь
             </Link>
