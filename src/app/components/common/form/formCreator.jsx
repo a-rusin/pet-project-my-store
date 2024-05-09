@@ -44,6 +44,18 @@ const FormCreator = ({ formState, submitForm, handleChange, btnText, btnDisabled
               ))}
             </select>
           )}
+          {input.type === "date" && (
+            <input
+              type="date"
+              id={input.name}
+              name={input.name}
+              onChange={(e) => handleChange(input.name, e.target.value)}
+              value={input.value}
+              min="1900-01-01"
+              max={`${new Date().getFullYear()}-12-31`}
+              className="form-input-text"
+            />
+          )}
         </div>
       ))}
 

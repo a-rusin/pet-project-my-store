@@ -43,16 +43,8 @@ const authSlice = createSlice({
   },
 });
 
-const {
-  authLoginSuccess,
-  authRegisterSuccess,
-  authRequested,
-  authSetUserSuccess,
-  authLogOut,
-  authFailed,
-  authResetError,
-  authResetRegisterState,
-} = authSlice.actions;
+export const { authLoginSuccess, authRegisterSuccess, authRequested, authSetUserSuccess, authLogOut, authFailed, authResetError, authResetRegisterState } =
+  authSlice.actions;
 
 const { reducer: authReducer } = authSlice;
 
@@ -122,8 +114,7 @@ export const getIsAuthLoading = () => (state) => state.auth.isLoading;
 
 export const getCurrentUser = () => (state) => state.auth.currentUser;
 
-export const isRoleIncluded = (role) => (state) =>
-  state.auth.currentUser?.roles.includes(role) || false;
+export const isRoleIncluded = (role) => (state) => state.auth.currentUser?.roles.includes(role) || false;
 
 export const getAuthError = () => (state) => state.auth.error;
 

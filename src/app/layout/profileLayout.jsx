@@ -29,7 +29,7 @@ const ProfileLayout = () => {
             <ul className="profile-list">
               <li className="profile-list-item">
                 <NavLink exact to="/profile" className="profile-list-item-url">
-                  Профиль
+                  Настройка профиля
                 </NavLink>
               </li>
               <li className="profile-list-item active">

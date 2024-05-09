@@ -5,10 +5,7 @@ const authEndPoint = "auth/";
 
 const authService = {
   register: async (userData) => {
-    const { data } = await httpService.post(
-      authEndPoint + "register",
-      userData
-    );
+    const { data } = await httpService.post(authEndPoint + "register", userData);
     return data;
   },
   login: async (userData) => {
@@ -23,6 +20,10 @@ const authService = {
   },
   getAllUsers: async () => {
     const { data } = await httpAuthService.get(authEndPoint + "getAllUsers");
+    return data;
+  },
+  update: async (payload) => {
+    const { data } = await httpAuthService.patch(authEndPoint + "updateProfile", payload);
     return data;
   },
 };
